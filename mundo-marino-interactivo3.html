@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mundo Marino Interactivo</title>
+
+  <style>
+    :root {
+      --ocean-blue: #00acc1;
+      --sand: #ffecb3;
+      --seaweed: #4caf50;
+    }
+
+    body {
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      background-color: #e0f7fa;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .card {
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+      max-width: 700px;
+      width: 100%;
+      padding: 30px;
+      border: 4px solid var(--ocean-blue);
+    }
+
+    h1, h2 {
+      color: #007c91;
+      text-align: center;
+      margin-top: 0;
+    }
+
+    .ocean {
+      background: linear-gradient(to bottom, #b2ebf2, #4dd0e1);
+      padding: 25px;
+      border-radius: 15px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      justify-content: center;
+      margin-bottom: 25px;
+      min-height: 100px;
+    }
+
+    .animal {
+      font-size: 2.5rem;
+      cursor: pointer;
+      transition: 0.3s;
+      user-select: none;
+    }
+
+    .animal:hover {
+      transform: scale(1.3) rotate(10deg);
+    }
+
+    .counted {
+      opacity: 0.2;
+      filter: grayscale(1);
+      transform: scale(0.8) !important;
+      cursor: default;
+    }
+
+    .grid-results {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fffde7;
+    }
+
+    th, td {
+      border: 2px solid var(--ocean-blue);
+      padding: 10px;
+      text-align: center;
+    }
+
+    th {
+      background: var(--ocean-blue);
+      color: white;
+    }
+
+    .chart-area {
+      display: flex;
+      align-items: flex-end;
+      height: 120px;
+      gap: 15px;
+      border-left: 3px solid #555;
+      border-bottom: 3px solid #555;
+      padding: 10px;
+      background: #f9f9f9;
+    }
+
+    .bar {
+      width: 45%;
+      border-radius: 5px 5px 0 0;
+      transition: height 0.5s ease-out;
+      position: relative;
+      min-height: 0;
+    }
+
+    .bar-y {
+      background: #ffeb3b;
+      border: 2px solid #fbc02d;
+    }
+
+    .bar-b {
+      background: #795548;
+      border: 2px solid #5d4037;
+    }
+
+    .bar-label {
+      position: absolute;
+      top: -25px;
+      width: 100%;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .desafio {
+      background: #f1f8e9;
+      border: 2px dashed #689f38;
+      padding: 20px;
+      border-radius: 15px;
+    }
+
+    .sum-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 15px;
+      font-size: 1.2rem;
+      flex-wrap: wrap;
+    }
+
+    input {
+      width: 60px;
+      padding: 8px;
+      text-align: center;
+      border: 2px solid #ccc;
+      border-radius: 8px;
+      font-size: 1.1rem;
+    }
+
+    input.correct {
+      border-color: #4caf50;
+      background-color: #c8e6c9;
+    }
+
+    input.incorrect {
+      border-color: #f44336;
+      background-color: #ffcdd2;
+    }
+
+    .feedback {
+      min-width: 24px;
+      font-weight: bold;
+    }
+
+    .btn-reset {
+      display: block;
+      width: 220px;
+      margin: 20px auto 0;
+      padding: 12px;
+      background: #d81b60;
+      color: white;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .btn-reset:hover {
+      background: #ad1457;
+    }
+
+    .nota {
+      text-align: center;
+      font-size: 0.9rem;
+      color: #007c91;
+      margin-top: -10px;
+      margin-bottom: 20px;
+    }
+
+    @media (max-width: 600px) {
+      .grid-results {
+        grid-template-columns: 1fr;
+      }
+
+      .animal {
+        font-size: 2.2rem;
+      }
+
+      .card {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="card">
+    <h1>🌊 Mundo Marino Interactivo</h1>
+
+    <p style="text-align: center;">
+      Haz clic en los animales para contarlos y ver cómo crece el gráfico.
+    </p>
+
+    <p class="nota">
+      Cada partida genera una cantidad diferente de animales.
+    </p>
+
+    <div class="ocean" id="ocean"></div>
+
+    <div class="grid-results">
+      <table>
+        <tr>
+          <th>Animal</th>
+          <th>Cant.</th>
+        </tr>
+        <tr>
+          <td>Amarillo (🦎)</td>
+          <td id="td-y" style="font-weight: bold;">0</td>
+        </tr>
+        <tr>
+          <td>Marrón (🐴)</td>
+          <td id="td-b" style="font-weight: bold;">0</td>
+        </tr>
+      </table>
+
+      <div class="chart-area">
+        <div id="bar-y" class="bar bar-y" style="height: 0%">
+          <span class="bar-label" id="lbl-y">0</span>
+        </div>
+
+        <div id="bar-b" class="bar bar-b" style="height: 0%">
+          <span class="bar-label" id="lbl-b">0</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="desafio">
+      <h2>🚀 SÚPER DESAFÍO</h2>
+
+      <div class="sum-row">
+        <span>🦎 + 🐴 = </span>
+        <input type="number" id="suma-total" placeholder="?" oninput="checkSum(this, respuestas.suma, 'feedback-1')">
+        <span id="feedback-1" class="feedback"></span>
+      </div>
+
+      <div class="sum-row">
+        <span>🦎 - 🐴 = </span>
+        <input type="number" id="resta-total" placeholder="?" oninput="checkSum(this, respuestas.resta, 'feedback-2')">
+        <span id="feedback-2" class="feedback"></span>
+      </div>
+    </div>
+
+    <button class="btn-reset" onclick="reset()">
+      🔄 Empezar de nuevo
+    </button>
+  </div>
+
+  <script>
+    let config = {
+      yellow: 0,
+      brown: 0
+    };
+
+    let current = {
+      yellow: 0,
+      brown: 0
+    };
+
+    let respuestas = {
+      suma: 0,
+      resta: 0
+    };
+
+    function numeroAleatorio(min, max) {
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+   function generarConfigAleatoria() {
+  const numero1 = numeroAleatorio(1, 9);
+  const numero2 = numeroAleatorio(1, 9);
+
+  // Nos aseguramos de que la resta nunca sea negativa
+  config.yellow = Math.max(numero1, numero2);
+  config.brown = Math.min(numero1, numero2);
+
+  respuestas.suma = config.yellow + config.brown;
+  respuestas.resta = config.yellow - config.brown;
+}
+
+    function init() {
+      generarConfigAleatoria();
+
+      current = {
+        yellow: 0,
+        brown: 0
+      };
+
+      const ocean = document.getElementById('ocean');
+      ocean.innerHTML = '';
+
+      let pool = [];
+
+      for (let i = 0; i < config.yellow; i++) {
+        pool.push('yellow');
+      }
+
+      for (let i = 0; i < config.brown; i++) {
+        pool.push('brown');
+      }
+
+      pool.sort(() => Math.random() - 0.5).forEach(type => {
+        const el = document.createElement('span');
+        el.className = 'animal';
+        el.innerText = type === 'yellow' ? '🦎' : '🐴';
+
+        if (type === 'brown') {
+          el.style.filter = 'sepia(1) saturate(3) hue-rotate(-30deg)';
+        }
+
+        el.onclick = () => {
+          if (!el.classList.contains('counted')) {
+            el.classList.add('counted');
+            current[type]++;
+            update();
+          }
+        };
+
+        ocean.appendChild(el);
+      });
+
+      limpiarInputs();
+      update();
+    }
+
+    function update() {
+      document.getElementById('td-y').innerText = current.yellow;
+      document.getElementById('td-b').innerText = current.brown;
+
+      document.getElementById('lbl-y').innerText = current.yellow;
+      document.getElementById('lbl-b').innerText = current.brown;
+
+      const total = config.yellow + config.brown;
+
+      document.getElementById('bar-y').style.height =
+        total > 0 ? (current.yellow / total * 100) + '%' : '0%';
+
+      document.getElementById('bar-b').style.height =
+        total > 0 ? (current.brown / total * 100) + '%' : '0%';
+    }
+
+    function checkSum(input, correctValue, feedbackId) {
+      const val = parseInt(input.value, 10);
+      const feedback = document.getElementById(feedbackId);
+
+      if (isNaN(val)) {
+        input.className = '';
+        feedback.innerText = '';
+      } else if (val === correctValue) {
+        input.className = 'correct';
+        feedback.innerText = '✅';
+      } else {
+        input.className = 'incorrect';
+        feedback.innerText = '❌';
+      }
+    }
+
+    function limpiarInputs() {
+      document.querySelectorAll('input').forEach(input => {
+        input.value = '';
+        input.className = '';
+      });
+
+      document.getElementById('feedback-1').innerText = '';
+      document.getElementById('feedback-2').innerText = '';
+    }
+
+    function reset() {
+      init();
+    }
+
+    init();
+  </script>
+
+</body>
+</html>
