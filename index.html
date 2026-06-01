@@ -115,6 +115,15 @@ const RECURSOS_EDUCATIVOS = [
   icono: "waves",
   enlace: "https://marmenormarmayor.es/el-blog-de-isabel/Entries/2020/5/la-importancia-de-lo-pequeo.html",
   textoBoton: "Leer artículo"
+},
+{
+  titulo: "El caballito de mar de hocico largo",
+  categoria: "Conocer el Mar Menor",
+  tipo: "interactivo",
+  descripcion: "Presentación interactiva sobre el caballito de mar de hocico largo, pensada para conocer mejor sus características, su hábitat y la importancia de protegerlo.",
+  icono: "presentation",
+  enlace: "https://gamma.app/embed/g2f35oybjh8dwyx",
+  textoBoton: "Abrir presentación"
 }
 ];
     const IMAGENES = {
@@ -127,21 +136,15 @@ const RECURSOS_EDUCATIVOS = [
           url: "https://buturabihende.github.io/caballo-de-mar/caballito%20entre%20posidoneas%201980p.mp4",
           alt: "caballito de mar"
         },
-        {
-          tipo: "video",
-          url: "https://assets.mixkit.co/videos/preview/mixkit-shallow-focus-of-a-sea-anemone-underwater-41712-large.mp4", // Simulación del MP4 de fondo
-          poster: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&q=80&w=2000",
-          alt: "Caballito de mar moviéndose suavemente en su pradera marina"
-        },
-        {
+                {
           tipo: "imagen",
-          url: "https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&q=80&w=2000",
-          alt: "Niños de primaria aprendiendo y disfrutando en el mediterráneo"
+          url: "https://www.publicdomainpictures.net/pictures/60000/velka/sea-horse.jpg?auto=format&fit=crop&q=80&w=2000",
+          alt: "caballo de mar 2"
         }
       ],
       // Fallbacks generales de seguridad por si falla la carga del slideshow inicial
-      HERO_FONDO: "https://images.unsplash.com/photo-1502082553048-f009c37129b9?auto=format&fit=crop&q=80&w=2000",
-      HERO_FONDO_FALLBACK: "https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&q=80&w=2000",
+      HERO_FONDO: "https://www.publicdomainpictures.net/pictures/60000/velka/sea-horse.jpg?auto=format&fit=crop&q=80&w=2000",
+      HERO_FONDO_FALLBACK: "https://www.publicdomainpictures.net/pictures/60000/velka/sea-horse.jpg?auto=format&fit=crop&q=80&w=2000",
 
       // --- SECCIÓN EL ENTORNO (Mar Menor) ---
       ENTORNO_LAGUNA: "https://lh3.googleusercontent.com/d/1AFfcFR-0BWZM7Ei-MmvtlF2fWoSt8Kwx",//"https://lh3.googleusercontent.com/d/1_4Di9gT_wZiazEYvVtMe93RZf0XzNeFW",
@@ -286,7 +289,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const MEDIA = {
       // Admite enlaces de inserción de YouTube ("https://www.youtube.com/embed/...")
       // o archivos de vídeo directos en formato MP4 (de Google Drive u otro servidor de medios).
-      VIDEO_PRINCIPAL: "https://www.youtube.com/embed/dQw4w9WgXcQ" // Se reemplazará con el vídeo real del centro
+      VIDEO_PRINCIPAL: "https://www.youtube.com/embed/DMzVX3RUK-w"         //"https://www.youtube.com/embed/dQw4w9WgXcQ" // Se reemplazará con el vídeo real del centro
     };
 
     /**
@@ -895,6 +898,7 @@ body.modal-video-active {
         <a href="#galeria" class="hover:text-marine-600 transition-colors">Momentos</a>
         <a href="#itinerario" class="hover:text-marine-600 transition-colors">Itinerario</a>
         <a href="#recursos-didacticos" class="hover:text-marine-600 transition-colors">Recursos</a>
+        <a href="#qr-alumnado" class="hover:text-marine-600 transition-colors">Productos</a>
         <a href="#cierre" class="bg-gradient-to-r from-marine-800 to-marine-900 hover:from-marine-900 hover:to-marine-950 text-white px-5 py-2.5 rounded-full hover:shadow-md transition-all text-[10px]">
           Saber más
         </a>
@@ -1149,10 +1153,10 @@ body.modal-video-active {
             Cuidar Juntos Nuestro Mar
           </span>
           <h3 class="font-serif font-bold text-3xl sm:text-4xl text-marine-950 tracking-tight mb-6">
-            Una red vecinal unida por la ciencia y el cuidado mutuo.
+            Una red de instituciones al servicio de la biodiversidad del Mar Menor.
           </h3>
           <p class="text-slate-700 text-base font-normal leading-relaxed mb-8">
-            Este proyecto de Aprendizaje Servicio vincula a toda la comunidad educativa. Con el soporte de los naturalistas de la **Asociación Hipocampus** y el afecto del taller inclusivo de **AFESMO**, el alumnado comprueba el valor transformador de trabajar con personas de distintos ámbitos por un fin común.
+            Este proyecto de Aprendizaje Servicio vincula a toda la comunidad educativa. Con el soporte de los naturalistas de la Asociación Hipocampus y el afecto del taller inclusivo de AFESMO, el alumnado comprueba el valor transformador de trabajar con personas de distintos ámbitos por un fin común.
           </p>
           
           <!-- Detalle de Colaboradores Locales -->
@@ -1193,7 +1197,7 @@ body.modal-video-active {
       
       <div class="w-32 flex items-center justify-center shrink-0">
         <span class="font-serif font-bold text-4xl sm:text-5xl text-marine-600 leading-none">
-          450
+          150
         </span>
       </div>
 
@@ -1229,7 +1233,7 @@ body.modal-video-active {
       
    <div class="w-32 flex items-center justify-center shrink-0">
   <span class="font-serif font-bold text-4xl sm:text-5xl text-emerald-600 leading-none">
-    +500
+    +300
   </span>
 </div>
 
@@ -1361,94 +1365,180 @@ body.modal-video-active {
 
     </div>
   </section>
-
-  <!-- 6. CAMINO PEDAGÓGICO / ITINERARIO (Riqueza visual, detalles finos y elegante) -->
-  <section id="itinerario" class="py-28 bg-white relative fade-in-section">
-    <div class="max-w-7xl mx-auto px-6">
-      
-      <!-- Cabecera de Sección -->
-      <div class="text-center max-w-3xl mx-auto mb-20">
-        <span class="text-xs uppercase tracking-[0.25em] text-terracotta-600 font-bold block mb-3">
-          El Proceso de Aprendizaje Servicio
-        </span>
-        <h2 class="font-serif font-bold text-3xl sm:text-4xl md:text-5xl text-marine-950 tracking-tight">
-          Nuestra Travesía Pedagógica
-        </h2>
-        <p class="text-slate-700 text-base sm:text-lg mt-4 font-normal">
-          Un trayecto vivo donde cada hito curricular se convierte en una vivencia de ayuda real a la comunidad.
-        </p>
-      </div>
-
-      <!-- Timeline Enriquecida, Detallada y Elegante -->
-      <div class="max-w-5xl mx-auto relative pl-8 sm:pl-0">
-        <!-- Línea central decorativa con degradado suave -->
-        <div class="absolute left-4 sm:left-1/2 top-4 bottom-4 w-0.5 bg-gradient-to-b from-marine-600 via-terracotta-400 to-emerald-600 -translate-x-1/2 hidden sm:block"></div>
-        <div class="absolute left-4 top-4 bottom-4 w-0.5 bg-gradient-to-b from-marine-600 via-terracotta-400 to-emerald-600 sm:hidden"></div>
-
-        <div class="space-y-16">
-          
-          <!-- Hito 1 -->
-          <div class="relative flex flex-col sm:flex-row items-center gap-6 sm:gap-12">
-            <!-- Texto izquierda (Visible en pantallas grandes) -->
-            <div class="sm:w-1/2 text-left sm:text-right sm:pr-12">
-              <span class="text-xs text-marine-600 font-bold uppercase tracking-wider block mb-1">Paso 1 · El Despertar</span>
-              <h4 class="font-serif text-xl font-bold text-marine-950 mb-3">Investigación en el Aula</h4>
-              <p class="text-slate-700 text-sm leading-relaxed">
-                El alumnado comienza haciéndose preguntas sobre su propio mar. Analizan literatura sobre biodiversidad, recogen datos de campo y se reúnen con ecologistas de la <span class="text-marine-600 font-semibold">Asociación Hipocampus</span>.
-              </p>
-            </div>
-            
-            <!-- Icono/Punto Central -->
-            <div class="absolute left-[-24px] sm:left-1/2 w-8 h-8 rounded-full bg-marine-50 border-2 border-marine-600 flex items-center justify-center shadow-sm -translate-x-1/2 z-10 transition-transform duration-300 hover:scale-110">
-              <i data-lucide="microscope" class="w-4 h-4 text-marine-600"></i>
-            </div>
-            
-            <div class="sm:w-1/2 hidden sm:block"></div>
-          </div>
-
-          <!-- Hito 2 -->
-          <div class="relative flex flex-col sm:flex-row items-center gap-6 sm:gap-12">
-            <div class="sm:w-1/2 hidden sm:block"></div>
-            
-            <!-- Icono/Punto Central -->
-            <div class="absolute left-[-24px] sm:left-1/2 w-8 h-8 rounded-full bg-terracotta-50 border-2 border-terracotta-500 flex items-center justify-center shadow-sm -translate-x-1/2 z-10 transition-transform duration-300 hover:scale-110">
-              <i data-lucide="scissors" class="w-4 h-4 text-terracotta-500"></i>
-            </div>
-
-            <!-- Texto derecha -->
-            <div class="sm:w-1/2 text-left sm:pl-12">
-              <span class="text-xs text-terracotta-500 font-bold uppercase tracking-wider block mb-1">Paso 2 · Co-creación</span>
-              <h4 class="font-serif text-xl font-bold text-marine-950 mb-3">Taller de peluches de AFESMO</h4>
-              <p class="text-slate-700 text-sm leading-relaxed">
-                El trabajo se une con el taller artesanal. Alumnos y personas del centro de salud mental cooperan codo con codo en el diseño y costura de caballitos de felpa con telas rescatadas, aunando inclusión social y ecología.
-              </p>
-            </div>
-          </div>
-
-          <!-- Hito 3 -->
-          <div class="relative flex flex-col sm:flex-row items-center gap-6 sm:gap-12">
-            <!-- Texto izquierda -->
-            <div class="sm:w-1/2 text-left sm:text-right sm:pr-12">
-              <span class="text-xs text-emerald-600 font-bold uppercase tracking-wider block mb-1">Paso 3 · Compartir</span>
-              <h4 class="font-serif text-xl font-bold text-marine-950 mb-3">Eco-concienciación Ciudadana</h4>
-              <p class="text-slate-700 text-sm leading-relaxed">
-                El proyecto sale a las plazas y mercados de Murcia. El alumnado asume el rol de educadores, explicando a vecinos y visitantes la importancia cívica de cuidar el Mar Menor.
-              </p>
-            </div>
-            
-            <!-- Icono/Punto Central -->
-            <div class="absolute left-[-24px] sm:left-1/2 w-8 h-8 rounded-full bg-emerald-50 border-2 border-emerald-600 flex items-center justify-center shadow-sm -translate-x-1/2 z-10 transition-transform duration-300 hover:scale-110">
-              <i data-lucide="megaphone" class="w-4 h-4 text-emerald-700"></i>
-            </div>
-            
-            <div class="sm:w-1/2 hidden sm:block"></div>
-          </div>
-
-        </div>
-      </div>
-
+<!-- 6. CAMINO PEDAGÓGICO / ITINERARIO REAL DEL PROYECTO -->
+<section id="itinerario" class="py-28 bg-white relative fade-in-section">
+  <div class="max-w-7xl mx-auto px-6">
+    
+    <!-- Cabecera de Sección -->
+    <div class="text-center max-w-3xl mx-auto mb-20">
+      <span class="text-xs uppercase tracking-[0.25em] text-terracotta-600 font-bold block mb-3">
+        El Proceso de Aprendizaje Servicio
+      </span>
+      <h2 class="font-serif font-bold text-3xl sm:text-4xl md:text-5xl text-marine-950 tracking-tight">
+        Nuestra Travesía Pedagógica
+      </h2>
+      <p class="text-slate-700 text-base sm:text-lg mt-4 font-normal">
+        Un itinerario vivo donde la memoria familiar, la investigación, la creación digital y la difusión pública se unen para cuidar el Mar Menor.
+      </p>
     </div>
-  </section>
+
+    <!-- Timeline Enriquecida -->
+    <div class="max-w-6xl mx-auto relative pl-8 sm:pl-0">
+      
+      <!-- Línea central decorativa -->
+      <div class="absolute left-4 sm:left-1/2 top-4 bottom-4 w-0.5 bg-gradient-to-b from-marine-600 via-terracotta-400 via-emerald-500 to-marine-800 -translate-x-1/2 hidden sm:block"></div>
+      <div class="absolute left-4 top-4 bottom-4 w-0.5 bg-gradient-to-b from-marine-600 via-terracotta-400 via-emerald-500 to-marine-800 sm:hidden"></div>
+
+      <div class="space-y-16">
+
+        <!-- Fase 1 -->
+        <div class="relative flex flex-col sm:flex-row items-center gap-6 sm:gap-12">
+          
+          <div class="sm:w-1/2 text-left sm:text-right sm:pr-12">
+            <div class="inline-flex items-center gap-2 mb-3">
+              <span class="text-xs text-marine-600 font-bold uppercase tracking-wider">
+                Fase 1 · Exploradores del pasado
+              </span>
+            </div>
+
+            <h4 class="font-serif text-xl sm:text-2xl font-bold text-marine-950 mb-2">
+              Memoria, relatos familiares y primeras preguntas
+            </h4>
+
+            <p class="text-xs font-bold text-terracotta-600 uppercase tracking-[0.18em] mb-4">
+              10 DIC - 30 ENE
+            </p>
+
+            <div class="space-y-2 text-slate-700 text-sm leading-relaxed">
+              <p>Detección de ideas previas y relatos de abuelos sobre el Mar Menor.</p>
+              <p>Lectura del cuento <span class="font-semibold text-marine-800">“El secreto de Simón”</span>.</p>
+              <p class="text-xs text-slate-500 pt-1">
+                <span class="font-bold text-slate-700">Responsables:</span> Tutores, D5, D7, D10
+              </p>
+            </div>
+
+            <div class="mt-4 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-100 text-[10px] font-bold uppercase tracking-wider">
+              <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+              Terminado
+            </div>
+          </div>
+
+          <div class="absolute left-[-24px] sm:left-1/2 w-9 h-9 rounded-full bg-marine-50 border-2 border-marine-600 flex items-center justify-center shadow-sm -translate-x-1/2 z-10 transition-transform duration-300 hover:scale-110">
+            <i data-lucide="book-open" class="w-4 h-4 text-marine-600"></i>
+          </div>
+
+          <div class="sm:w-1/2 hidden sm:block"></div>
+        </div>
+
+        <!-- Fase 2 -->
+        <div class="relative flex flex-col sm:flex-row items-center gap-6 sm:gap-12">
+          
+          <div class="sm:w-1/2 hidden sm:block"></div>
+
+          <div class="absolute left-[-24px] sm:left-1/2 w-9 h-9 rounded-full bg-terracotta-50 border-2 border-terracotta-500 flex items-center justify-center shadow-sm -translate-x-1/2 z-10 transition-transform duration-300 hover:scale-110">
+            <i data-lucide="microscope" class="w-4 h-4 text-terracotta-500"></i>
+          </div>
+
+          <div class="sm:w-1/2 text-left sm:pl-12">
+            <div class="inline-flex items-center gap-2 mb-3">
+              <span class="text-xs text-terracotta-500 font-bold uppercase tracking-wider">
+                Fase 2 · Investigadores marinos
+              </span>
+            </div>
+
+            <h4 class="font-serif text-xl sm:text-2xl font-bold text-marine-950 mb-2">
+              Ciencia escolar, sonidos marinos y datos visuales
+            </h4>
+
+            <p class="text-xs font-bold text-terracotta-600 uppercase tracking-[0.18em] mb-4">
+              7 ENE - 30 ENE
+            </p>
+
+            <div class="space-y-2 text-slate-700 text-sm leading-relaxed">
+              <p>Investigación guiada en el Aula del Futuro y juego de la cadena trófica.</p>
+              <p>Taller de sonidos marinos y diseño de gráficos científicos.</p>
+              <p class="text-xs text-slate-500 pt-1">
+                <span class="font-bold text-slate-700">Responsables:</span> Tutores, D2, D6, D9
+              </p>
+            </div>
+
+           
+          </div>
+        </div>
+
+        <!-- Fase 3 -->
+        <div class="relative flex flex-col sm:flex-row items-center gap-6 sm:gap-12">
+          
+          <div class="sm:w-1/2 text-left sm:text-right sm:pr-12">
+            <div class="inline-flex items-center gap-2 mb-3">
+              <span class="text-xs text-emerald-600 font-bold uppercase tracking-wider">
+                Fase 3 · Creadores digitales
+              </span>
+            </div>
+
+            <h4 class="font-serif text-xl sm:text-2xl font-bold text-marine-950 mb-2">
+              Comunicación visual, robótica y encuentro con expertos
+            </h4>
+
+            <p class="text-xs font-bold text-terracotta-600 uppercase tracking-[0.18em] mb-4">
+              2 FEB - 27 MAR
+            </p>
+
+            <div class="space-y-2 text-slate-700 text-sm leading-relaxed">
+              <p>Producción de carteles en Canva/Procreate y taller de robótica.</p>
+              <p>Charla con la Asociación Hippocampus y excursión al Mar Menor.</p>
+              <p class="text-xs text-slate-500 pt-1">
+                <span class="font-bold text-slate-700">Responsables:</span> Coordinadora, D6, D9, D(Inglés)
+              </p>
+            </div>
+          </div>
+
+          <div class="absolute left-[-24px] sm:left-1/2 w-9 h-9 rounded-full bg-emerald-50 border-2 border-emerald-600 flex items-center justify-center shadow-sm -translate-x-1/2 z-10 transition-transform duration-300 hover:scale-110">
+            <i data-lucide="palette" class="w-4 h-4 text-emerald-700"></i>
+          </div>
+
+          <div class="sm:w-1/2 hidden sm:block"></div>
+        </div>
+
+        <!-- Fase 4 -->
+        <div class="relative flex flex-col sm:flex-row items-center gap-6 sm:gap-12">
+          
+          <div class="sm:w-1/2 hidden sm:block"></div>
+
+          <div class="absolute left-[-24px] sm:left-1/2 w-9 h-9 rounded-full bg-marine-50 border-2 border-marine-800 flex items-center justify-center shadow-sm -translate-x-1/2 z-10 transition-transform duration-300 hover:scale-110">
+            <i data-lucide="megaphone" class="w-4 h-4 text-marine-800"></i>
+          </div>
+
+          <div class="sm:w-1/2 text-left sm:pl-12">
+            <div class="inline-flex items-center gap-2 mb-3">
+              <span class="text-xs text-marine-800 font-bold uppercase tracking-wider">
+                Fase 4 · Compartiendo el mensaje
+              </span>
+            </div>
+
+            <h4 class="font-serif text-xl sm:text-2xl font-bold text-marine-950 mb-2">
+              Teatro, puertas abiertas y difusión comunitaria
+            </h4>
+
+            <p class="text-xs font-bold text-terracotta-600 uppercase tracking-[0.18em] mb-4">
+              13 ABR - 20 MAY
+            </p>
+
+            <div class="space-y-2 text-slate-700 text-sm leading-relaxed">
+              <p>Obra de teatro <span class="font-semibold text-marine-800">“Simón, el caballito de mar”</span>.</p>
+              <p>Jornada de Puertas Abiertas y difusión en Radio Compañía.</p>
+              <p class="text-xs text-slate-500 pt-1">
+                <span class="font-bold text-slate-700">Responsables:</span> Todo el equipo docente y AFESMO
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
 
   <!-- =========================================================================
        NUEVA SECCIÓN DE GALERÍA AMPLIADA (Slider Fotorreportaje Cinematográfico)
@@ -1539,6 +1629,103 @@ body.modal-video-active {
 
   </div>
 </section>
+
+<!-- SECCIÓN QR: PRODUCCIONES DEL ALUMNADO -->
+<section id="qr-alumnado" class="py-28 bg-sand-100/40 relative fade-in-section border-t border-sand-200/40">
+  <div class="max-w-7xl mx-auto px-6">
+
+    <!-- Cabecera -->
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <span class="text-xs uppercase tracking-[0.25em] text-marine-600 font-bold block mb-3">
+        Voces y miradas del alumnado
+      </span>
+
+      <h2 class="font-serif font-bold text-3xl sm:text-4xl md:text-5xl text-marine-950 tracking-tight">
+        Producciones digitales del proyecto
+      </h2>
+
+      <p class="text-slate-700 text-base sm:text-lg mt-4 font-normal leading-relaxed">
+        Accede mediante estos códigos QR a los vídeos y pódcast creados por el alumnado para compartir su aprendizaje, su compromiso y su mensaje de cuidado hacia el Mar Menor.
+      </p>
+    </div>
+
+    <!-- Tarjetas QR -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 max-w-5xl mx-auto">
+
+      <!-- QR Vídeos -->
+      <a href="https://youtube.com/@guardianesfatima?si=KCHrH2cibQ4ZSCVb&cxqr=FGjzbe0m_pS1KBik-yW0wN"
+         target="_blank"
+         rel="noopener noreferrer"
+         class="group bg-white rounded-3xl p-8 sm:p-10 border border-sand-200/60 shadow-sm hover:shadow-md transition-all duration-500 hover:-translate-y-1 flex flex-col items-center text-center">
+
+        <div class="mb-6 inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-marine-50 text-marine-700 border border-marine-100">
+          <i data-lucide="video" class="w-4 h-4"></i>
+          <span class="text-[10px] font-bold uppercase tracking-[0.18em]">Vídeos del proyecto</span>
+        </div>
+
+        <div class="bg-sand-50 rounded-2xl p-5 border border-sand-200/70 shadow-inner mb-6 group-hover:scale-[1.02] transition-transform duration-500">
+          <img
+            src="https://lh3.googleusercontent.com/d/1vdxzNlImyiEdXi9jzmqF9MkirRDJRPS5=w600"
+            alt="Código QR para acceder a los vídeos creados por el alumnado"
+            class="w-56 h-56 sm:w-64 sm:h-64 object-contain"
+          >
+        </div>
+
+        <h3 class="font-serif font-bold text-2xl text-marine-950 mb-3">
+          Vídeos creados por el alumnado
+        </h3>
+
+        <p class="text-sm text-slate-700 leading-relaxed max-w-sm mb-6">
+          Una colección de piezas audiovisuales donde los alumnos explican, comunican y comparten lo aprendido durante el proyecto.
+        </p>
+
+        <span class="inline-flex items-center gap-2 text-xs font-bold text-marine-600 uppercase tracking-wider group-hover:text-marine-800 transition-colors">
+          Abrir vídeos
+          <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+        </span>
+      </a>
+
+      <!-- QR Pódcast -->
+      <a href="https://qrkit.co/wLC3Hd"
+         target="_blank"
+         rel="noopener noreferrer"
+         class="group bg-white rounded-3xl p-8 sm:p-10 border border-sand-200/60 shadow-sm hover:shadow-md transition-all duration-500 hover:-translate-y-1 flex flex-col items-center text-center">
+
+        <div class="mb-6 inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-terracotta-50 text-terracotta-600 border border-terracotta-100">
+          <i data-lucide="podcast" class="w-4 h-4"></i>
+          <span class="text-[10px] font-bold uppercase tracking-[0.18em]">Pódcast del proyecto</span>
+        </div>
+
+        <div class="bg-sand-50 rounded-2xl p-5 border border-sand-200/70 shadow-inner mb-6 group-hover:scale-[1.02] transition-transform duration-500">
+          <img
+            src="https://lh3.googleusercontent.com/d/12QxknywkV8yG_iSkCknY1NRkmoIBionF=w600"
+            alt="Código QR para acceder a los pódcast creados por el alumnado"
+            class="w-56 h-56 sm:w-64 sm:h-64 object-contain"
+          >
+        </div>
+
+        <h3 class="font-serif font-bold text-2xl text-marine-950 mb-3">
+          Pódcast creados por el alumnado
+        </h3>
+
+        <p class="text-sm text-slate-700 leading-relaxed max-w-sm mb-6">
+          Audios elaborados por los alumnos para dar voz al proyecto, sensibilizar a la comunidad y contar la historia del caballito de mar.
+        </p>
+
+        <span class="inline-flex items-center gap-2 text-xs font-bold text-terracotta-600 uppercase tracking-wider group-hover:text-terracotta-500 transition-colors">
+          Abrir pódcast
+          <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+        </span>
+      </a>
+
+    </div>
+
+  </div>
+</section>
+
+
+
+
 
 
 
