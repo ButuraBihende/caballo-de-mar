@@ -231,11 +231,11 @@
           <th>Cant.</th>
         </tr>
         <tr>
-          <td>Amarillo (🦎)</td>
+          <td>Amarillo (🌿)</td>
           <td id="td-y" style="font-weight: bold;">0</td>
         </tr>
         <tr>
-          <td>Marrón (🐴)</td>
+          <td>Marrón (🐚)</td>
           <td id="td-b" style="font-weight: bold;">0</td>
         </tr>
       </table>
@@ -255,13 +255,13 @@
       <h2>🚀 SÚPER DESAFÍO</h2>
 
       <div class="sum-row">
-        <span>🦎 + 🐴 = </span>
+        <span>🌿 + 🐚 = </span>
         <input type="number" id="suma-total" placeholder="?" oninput="checkSum(this, respuestas.suma, 'feedback-1')">
         <span id="feedback-1" class="feedback"></span>
       </div>
 
       <div class="sum-row">
-        <span>🦎 - 🐴 = </span>
+        <span>🌿 - 🐚 = </span>
         <input type="number" id="resta-total" placeholder="?" oninput="checkSum(this, respuestas.resta, 'feedback-2')">
         <span id="feedback-2" class="feedback"></span>
       </div>
@@ -328,7 +328,7 @@
       pool.sort(() => Math.random() - 0.5).forEach(type => {
         const el = document.createElement('span');
         el.className = 'animal';
-        el.innerText = type === 'yellow' ? '🦎' : '🐴';
+        el.innerText = type === 'yellow' ? '🌿' : '🐚';
 
         if (type === 'brown') {
           el.style.filter = 'sepia(1) saturate(3) hue-rotate(-30deg)';
