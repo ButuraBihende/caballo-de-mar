@@ -1,0 +1,1875 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guardianes del Caballito de Mar - Proyecto ApS</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts: Playfair Display (para un toque literario premium) y Plus Jakarta Sans (limpia y humana) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Iconos modernos (Lucide Icons) -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- ==========================================
+       BLOQUE DE CONTROL CENTRALIZADO DE RECURSOS
+       ========================================== -->
+  <script>
+    /**
+     * Objeto global para gestionar los recursos visuales del proyecto.
+     * * FORMATO PARA GOOGLE DRIVE:
+     * Para usar fotos o vídeos de Google Drive, ponlos en "Cualquiera con el enlace puede ver"
+     * e introduce sus URLs en este formato directo:
+     * "https://lh3.googleusercontent.com/d/ID_DE_TU_ARCHIVO=wXXXX"
+     * * Donde "wXXXX" indica el ancho máximo (w2200, w1400, w900) para un rendimiento fluido.
+     */
+
+    // --- BANCO DE RECURSOS EDUCATIVOS ---
+// Array centralizado de recursos didácticos clasificados por categorías
+const RECURSOS_EDUCATIVOS = [
+  {
+    titulo: "El Secreto de Simón",
+    categoria: "Cuentos y lecturas",
+    descripcion: "Un cuento ilustrado y conmovedor que narra las aventuras de un pequeño caballito de mar en la laguna y enseña a los más jóvenes el valor de la empatía ecológica.",
+    icono: "book-open",
+    enlace: "https://canva.link/qes7fzjyl5i01ef",
+    textoBoton: "Leer Cuento"
+  },
+
+  {
+    titulo: "Vídeo motivador del proyecto",
+    categoria: "Vídeos y sensibilización",
+    descripcion: "Pieza audiovisual que resume el espíritu del proyecto de Aprendizaje Servicio a través de las voces del alumnado y las entidades colaboradoras.",
+    icono: "clapperboard",
+    enlace: "https://www.youtube.com/watch?v=LKZggDELfps&t=196s",
+    textoBoton: "Ver Vídeo"
+  },
+  {
+    titulo: "Cuento adaptado con Pictogramas",
+    categoria: "Cuentos y lecturas",
+    descripcion: "Lectura adaptada metodológicamente con pictogramas para asegurar la accesibilidad cognitiva y la inclusión de todo el alumnado de primaria.",
+    icono: "accessibility",
+    enlace: "https://docs.google.com/document/d/1TZd74lDzmn8wLakUWG0-eFwexljPkFZ0ba6SHw-1pvA/edit?tab=t.0",
+    textoBoton: "Acceder a Lectura"
+  },
+  {
+    titulo: "Ficha de Comprensión Lectora",
+    categoria: "Cuentos y lecturas",
+    descripcion: "Actividades didácticas estructuradas para trabajar en el aula la comprensión del cuento y reflexionar sobre la biodiversidad local.",
+    icono: "file-text",
+    enlace: "https://aula21-my.sharepoint.com/:w:/g/personal/auroramabel_dimarco_aulaxxi_murciaeduca_es/IQCHwuL11QKlTZba9PzZW1TXAf0KwW1v0lmH95On6vpSpVc?e=QUDUoz",
+    textoBoton: "Descargar Ficha"
+  },
+  {
+    titulo: "Aprende a dibujar tu caballito",
+    categorias: ["Actividades creativas", "Vídeos y sensibilización"],
+    
+    descripcion: "Guía paso a paso ilustrada de manera sencilla para que el alumnado aprenda a dibujar y colorear con acuarelas al emblemático habitante marino.",
+    tipo: "video",
+    icono: "palette",
+    enlace: "https://drive.google.com/file/d/1rhgI2ZnpuRBEeolmoigbw1t4GT4dUEOM/view",
+    textoBoton: "Ver Tutorial"
+  },
+  {
+  titulo: "Libro de colorear del caballito de mar",
+  categoria: "Actividades creativas",
+  descripcion: "Recurso visual en Canva con láminas para colorear, pensado para trabajar la creatividad, la atención y la sensibilización ambiental en torno al caballito de mar.",
+  icono: "palette",
+  enlace: "https://www.canva.com/design/DAG-ULun8n0/dQ_RyhbOaAchSN0I0JqseA/view?utm_content=DAG-ULun8n0&utm_campaign=designshare&utm_medium=embeds&utm_source=link#15",
+  textoBoton: "Abrir libro"
+},
+{
+  titulo: "Mundo Marino Interactivo",
+  categoria: "Actividades creativas",
+  tipo: "interactivo",
+  descripcion: "Actividad interactiva para contar animales marinos, representar datos en una tabla y un gráfico, y resolver pequeños retos matemáticos.",
+  icono: "mouse-pointer-click",
+  enlace: "https://buturabihende.github.io/caballo-de-mar/mundo-marino-interactivo3.html",
+  textoBoton: "Abrir actividad"
+},
+ {
+  titulo: "Ficha de comprensión lectora",
+  categoria: "Cuentos y lecturas",
+  descripcion: "Documento de trabajo para profundizar en la comprensión del cuento y reflexionar sobre el cuidado del caballito de mar y su entorno.",
+  icono: "file-text",
+  enlace: "https://aula21-my.sharepoint.com/:w:/g/personal/auroramabel_dimarco_aulaxxi_murciaeduca_es/IQCHwuL11QKlTZba9PzZW1TXAf0KwW1v0lmH95On6vpSpVc?e=QUDUoz",
+  textoBoton: "Abrir ficha"
+},
+{
+  titulo: "Documento de actividades del proyecto",
+  categoria: "Cuentos y lecturas",
+  descripcion: "Documento editable con propuestas de trabajo para el aula relacionadas con el proyecto Guardianes del Caballito de Mar.",
+  icono: "file-text",
+  enlace: "https://docs.google.com/document/d/1gdTXDyM0X0rEI96uzyKX4GlUMHoxZUmA/edit",
+  textoBoton: "Abrir documento"
+},
+{
+  titulo: "La importancia de lo pequeño",
+  categoria: "Conocer el Mar Menor",
+  descripcion: "Artículo divulgativo para reflexionar sobre el valor de las pequeñas especies y comprender por qué proteger al caballito de mar también significa cuidar todo el equilibrio del Mar Menor.",
+  icono: "waves",
+  enlace: "https://marmenormarmayor.es/el-blog-de-isabel/Entries/2020/5/la-importancia-de-lo-pequeo.html",
+  textoBoton: "Leer artículo"
+}
+];
+    const IMAGENES = {
+      // --- SECCIÓN HERO (Fondos Rotativos Híbridos: Imágenes + Vídeo MP4) ---
+      // El array admite objetos de tipo "imagen" o "video". 
+      // Si utilizas vídeo, define una imagen de "poster" como fondo de precarga y fallback.
+      HERO_SLIDES: [
+        {
+          tipo: "video",
+          url: "https://buturabihende.github.io/caballo-de-mar/caballito%20entre%20posidoneas%201980p.mp4",
+          alt: "caballito de mar"
+        },
+        {
+          tipo: "video",
+          url: "https://assets.mixkit.co/videos/preview/mixkit-shallow-focus-of-a-sea-anemone-underwater-41712-large.mp4", // Simulación del MP4 de fondo
+          poster: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&q=80&w=2000",
+          alt: "Caballito de mar moviéndose suavemente en su pradera marina"
+        },
+        {
+          tipo: "imagen",
+          url: "https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&q=80&w=2000",
+          alt: "Niños de primaria aprendiendo y disfrutando en el mediterráneo"
+        }
+      ],
+      // Fallbacks generales de seguridad por si falla la carga del slideshow inicial
+      HERO_FONDO: "https://images.unsplash.com/photo-1502082553048-f009c37129b9?auto=format&fit=crop&q=80&w=2000",
+      HERO_FONDO_FALLBACK: "https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&q=80&w=2000",
+
+      // --- SECCIÓN EL ENTORNO (Mar Menor) ---
+      ENTORNO_LAGUNA: "https://lh3.googleusercontent.com/d/1AFfcFR-0BWZM7Ei-MmvtlF2fWoSt8Kwx",//"https://lh3.googleusercontent.com/d/1_4Di9gT_wZiazEYvVtMe93RZf0XzNeFW",
+      ENTORNO_LAGUNA_FALLBACK: "https://images.unsplash.com/photo-1473116763269-255ea7b215f1?auto=format&fit=crop&q=80&w=1200",
+
+      // --- SECCIÓN ACCIÓN DEL ALUMNADO (Tarjetas) ---
+      ACCION_CIENCIA: "https://lh3.googleusercontent.com/d/1IzUUFaJoWgmhohO3pehP6Af5Ys0Kx908",
+      ACCION_CIENCIA_FALLBACK: "https://lh3.googleusercontent.com/d/18XWQlpHPTUEL8pKczIJgOcGmSjLyx0C1",
+      ACCION_COSTURA: "https://lh3.googleusercontent.com/d/1SE8lKgw78OZ9Hk6mL18J9bduSJlC4YXs",
+      ACCION_COSTURA_FALLBACK: "https://images.unsplash.com/photo-1541701494587-cb58502866ab?auto=format&fit=crop&q=80&w=800",
+      ACCION_COMUNICACION: "https://lh3.googleusercontent.com/d/1ibc0sOHRjal8XQdpRZF6CtbfImNghWFm",
+      ACCION_COMUNICACION_FALLBACK: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=80&w=800",
+
+      // --- SECCIÓN GALERÍA ASIMÉTRICA ---
+      GALERIA_DOMINANTE: "https://lh3.googleusercontent.com/d/1DQ_9Ue2-rLbP4eh0Gqv91xdKEM-qsbFC",
+      GALERIA_COMPLEMENTARY_TALLER: "https://lh3.googleusercontent.com/d/1vmK1tIQBwZ_gQNZk4R75bV_CcU83e7N2?auto=format&fit=crop&q=80&w=800",
+      GALERIA_COMPLEMENTARY_TALLER_FALLBACK: "https://images.unsplash.com/photo-1597047084897-51e81819a499?auto=format&fit=crop&q=80&w=800",
+      GALERIA_COMPLEMENTARY_ESPERANZA: "https://lh3.googleusercontent.com/d/1-eqa1dBdVebW2L3cPzC-t4rnXvqxaq8J",
+      GALERIA_COMPLEMENTARY_ESPERANZA_FALLBACK: "https://images.unsplash.com/photo-1502082553048-f009c37129b9?auto=format&fit=crop&q=80&w=800",
+      GALERIA_PANORAMICA_ENTORNO: "https://lh3.googleusercontent.com/d/1Uf86Wsgvz4xj5-XQRFcXiLhD4RewVL0I",
+
+      // --- SECCIÓN GALERÍA ROTATIVA DE ACCIÓN COOPERATIVA ---
+      // Colección de fotorreportajes para el slider de fotos. Admite hasta 8 imágenes o más de manera fluida.
+      // Soportará enlaces directos de Google Drive. Tamaño sugerido: w1200 o w1400
+GALERIA_PROYECTO: [
+        "https://lh3.googleusercontent.com/d/1sh0W6UX4ZalAH7iuINmoCym-yJhHCyw7=w1400", // 20251205_100821
+        "https://lh3.googleusercontent.com/d/1nGu-tfzV8UyvvdTbwDFEACEc_HAk6fCQ=w1400", // 20251205_101741
+        "https://lh3.googleusercontent.com/d/1SbYXtjy1QnpT9gnHSp8m7DgwugGfjFQL=w1400", // 20260217_120648
+        "https://lh3.googleusercontent.com/d/1hQyPlfb6u99DQbuYb4sDKaGRPz-a8gt8=w1400", // 20260305_094748
+        "https://lh3.googleusercontent.com/d/1IxscLBY-TrJW2xli0RP033QOxdXH6Oop=w1400", // 20260305_094832
+        "https://lh3.googleusercontent.com/d/1dOk7Rz2qNmy2KROE19D1Ba0F6FMPfwPN=w1400", // 20260305_102205
+        "https://lh3.googleusercontent.com/d/136P8Flnha8tp4oefxlS2URbPRS6vax3h=w1400", // 20260305_125408
+        "https://lh3.googleusercontent.com/d/1GjmqkGdxddJjpItrzpeN0tn5ApSzAm3r=w1400", // 20260324_103652
+        "https://lh3.googleusercontent.com/d/1GJV3ka81ZrcWUr1F6TGMTt6x7H5pZP8S=w1400", // 20260427_124125
+        "https://lh3.googleusercontent.com/d/1KN68OVHGs9C1rgNDrStrtVs1G8WDCD-Q=w1400", // 3e113adb-ed27-4ed7-b16f-205f268b1bc2
+        {
+          url: "https://lh3.googleusercontent.com/d/1KaviWKcx1LgUf_EfNv6e9-MG2vlGj2vj=w1400",
+          orientacion: "vertical",
+          alt: "Fotografía vertical del proyecto Guardianes del Caballito de Mar"
+        }, // 7495f534-c8e1-46ae-9780-a1ec5ab3674e_vertical
+        {
+          url: "https://lh3.googleusercontent.com/d/1wGNpFPFEX9W7nbJabNMy-2a_MCeuWurO=w1400",
+          orientacion: "vertical",
+          alt: "Fotografía vertical del proyecto Guardianes del Caballito de Mar"
+        }, // afesmo_vertical
+        {
+          url: "https://lh3.googleusercontent.com/d/1_lqt7ARV1cjxGAWVD0a8Yi73chmKuheB=w1400",
+          orientacion: "vertical",
+          alt: "Fotografía vertical del proyecto Guardianes del Caballito de Mar"
+        }, // Antonella_vertical
+        {
+          url: "https://lh3.googleusercontent.com/d/1rZxpCalEoaMIyFW5XkxU8j4YbZ8ulocQ=w1400",
+          orientacion: "vertical",
+          alt: "Fotografía vertical del proyecto Guardianes del Caballito de Mar"
+        }, // Asociación Hippocampus_vertical
+        {
+          url: "https://lh3.googleusercontent.com/d/1gDRFulZydao5c35SZOw2_yu9Ja4_tPmE=w1400",
+          orientacion: "vertical",
+          alt: "Fotografía vertical del proyecto Guardianes del Caballito de Mar"
+        }, // bolsas_vertical
+        {
+          url: "https://lh3.googleusercontent.com/d/1Y-INL_jb9k-A-gjx8Xgk9-bza_PQ3K-A=w1400",
+          orientacion: "vertical",
+          alt: "Fotografía vertical del proyecto Guardianes del Caballito de Mar"
+        }, // cartel mercadillo_vertical
+        {
+          url: "https://lh3.googleusercontent.com/d/1NNfgUvy6tfcDTBeQIhTpt_CtCyq8ziRJ=w1400",
+          orientacion: "vertical",
+          alt: "Fotografía vertical del proyecto Guardianes del Caballito de Mar"
+        }, // cartelteatro_vertical
+        "https://lh3.googleusercontent.com/d/1-UYnKJPylzjJuk7D3PmN3sZALD9_pObC=w1400", // comienzo mercadillo
+        {
+          url: "https://lh3.googleusercontent.com/d/1X2o5ZV3-rQ4vB-RnWyameVYwPOYoUexA=w1400",
+          orientacion: "vertical",
+          alt: "Fotografía vertical del proyecto Guardianes del Caballito de Mar"
+        }, // escenario _vertical
+        {
+          url: "https://lh3.googleusercontent.com/d/15OWOlPbsKdMNkT3Z49bpVMXW6WZcCk30=w1400",
+          orientacion: "vertical",
+          alt: "Fotografía vertical del proyecto Guardianes del Caballito de Mar"
+        }, // IMG_6260_vertical
+        "https://lh3.googleusercontent.com/d/1g-0uLoetgZTJNvOTCvRZSC0h1r2gx0LT=w1400", // IMG_6261
+        {
+          url: "https://lh3.googleusercontent.com/d/15t_KNA3Vv8ha7HcFdEyBMTj1-OUwVNqP=w1400",
+          orientacion: "vertical",
+          alt: "Fotografía vertical del proyecto Guardianes del Caballito de Mar"
+        }, // IMG-20260219-WA0013_vertical
+        {
+          url: "https://lh3.googleusercontent.com/d/1qdpAVj2in7o6npLZi7qBBKhxi6Fn7mYC=w1400",
+          orientacion: "vertical",
+          alt: "Fotografía vertical del proyecto Guardianes del Caballito de Mar"
+        }, // IMG-20260324-WA0072_vertical
+        {
+          url: "https://lh3.googleusercontent.com/d/1pUKruXg8-0wbx6seZPHaLW4xcEkVD27z=w1400",
+          orientacion: "vertical",
+          alt: "Fotografía vertical del proyecto Guardianes del Caballito de Mar"
+        }, // IMG-20260324-WA0074_vertical
+        {
+          url: "https://lh3.googleusercontent.com/d/1rAJyb9P88p0xDcZBLbfkU0qy54xm1Egk=w1400",
+          orientacion: "vertical",
+          alt: "Fotografía vertical del proyecto Guardianes del Caballito de Mar"
+        }, // IMG-20260425-WA0003_vertical
+        {
+          url: "https://lh3.googleusercontent.com/d/1vL9PDGYODh_KVVeOdyzBjHMHESWEyZVz=w1400",
+          orientacion: "vertical",
+          alt: "Fotografía vertical del proyecto Guardianes del Caballito de Mar"
+        }, // IMG20260108135112_vertical
+        "https://lh3.googleusercontent.com/d/1SD3EHOpfezz1x9i7fajJ_zWtkWSk6HEu=w1400", // IMG20260114093548
+        {
+          url: "https://lh3.googleusercontent.com/d/1Lw54oIINRcJfX7oOMXood7D-pXy9jJky=w1400",
+          orientacion: "vertical",
+          alt: "Fotografía vertical del proyecto Guardianes del Caballito de Mar"
+        }, // Llaveros_vertical
+        {
+          url: "https://lh3.googleusercontent.com/d/1uOfMv3-Okq9-g9hh4eDeRzYua3LzNYdN=w1400",
+          orientacion: "vertical",
+          alt: "Fotografía vertical del proyecto Guardianes del Caballito de Mar"
+        }, // obra_vertical
+        "https://lh3.googleusercontent.com/d/1ruH6iD2PekMOUMoXArM3zwKkl0h0X6dv=w1400", // rotada1
+        {
+          url: "https://lh3.googleusercontent.com/d/1J9h9ucCBnSOXF2VpKOjZrSwuPxSISbus=w1400",
+          orientacion: "vertical",
+          alt: "Fotografía vertical del proyecto Guardianes del Caballito de Mar"
+        }, // venta_vertical
+      ],
+
+      // --- SECCIÓN DE CIERRE EMOCIONAL ---
+      CIERRE_FONDO: "https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&q=80&w=2000",
+      CIERRE_FONDO_FALLBACK: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&q=80&w=2000",
+
+        //logo
+      URL_DEL_LOGO: "https://lh3.googleusercontent.com/d/1sZziBzynUit_RNNVCZWzpNpCoNvVNGWf=w170"
+    
+    };
+
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll(".logoCaballito").forEach((logo) => {
+    logo.src = IMAGENES.URL_DEL_LOGO;
+  });
+});
+    // --- OBJETO CENTRALIZADO PARA RECURSOS MULTIMEDIA (Vídeos de gran formato) ---
+    const MEDIA = {
+      // Admite enlaces de inserción de YouTube ("https://www.youtube.com/embed/...")
+      // o archivos de vídeo directos en formato MP4 (de Google Drive u otro servidor de medios).
+      VIDEO_PRINCIPAL: "https://www.youtube.com/embed/dQw4w9WgXcQ" // Se reemplazará con el vídeo real del centro
+    };
+
+    /**
+     * Aplica dinámicamente las imágenes cargadas en el objeto centralizado.
+     * Lee atributos declarativos `data-img` y `data-bg` para evitar URLs hardcodeadas.
+     */
+    function aplicarImagenes() {
+      // 1. Procesar imágenes estándar <img> que tengan data-img
+      document.querySelectorAll("[data-img]").forEach(el => {
+        const clave = el.getAttribute("data-img");
+        if (IMAGENES[clave]) {
+          el.src = IMAGENES[clave];
+        }
+
+        // Configurar fallback controlado por si falla la carga (ej. caída de servidor, link roto)
+        const claveFallback = el.getAttribute("data-fallback");
+        if (claveFallback && IMAGENES[claveFallback]) {
+          el.onerror = function() {
+            this.src = IMAGENES[claveFallback];
+            this.onerror = null; // Evitar llamadas infinitas
+          };
+        }
+      });
+
+      // 2. Procesar imágenes aplicadas como background-image en CSS (si fuesen requeridas)
+      document.querySelectorAll("[data-bg]").forEach(el => {
+        const clave = el.getAttribute("data-bg");
+        if (IMAGENES[clave]) {
+          el.style.backgroundImage = `url('${IMAGENES[clave]}')`;
+        }
+      });
+    }
+
+    // --- VARIABLES DE ESTADO PARA EL SLIDER DEL PROYECTO ---
+    let currentProyectoSlide = 0;
+    let proyectoInterval = null;
+    let isProyectoPaused = false;
+
+    /**
+     * Genera dinámicamente el slider de fotos ampliado, con transición
+     * de fundido cruzado (opacity fade), controles de navegación y autoplay inteligente.
+     */
+    function renderGaleriaProyecto() {
+  const track = document.getElementById("slider-track");
+  const dotsContainer = document.getElementById("slider-dots");
+  const prevBtn = document.getElementById("slider-btn-prev");
+  const nextBtn = document.getElementById("slider-btn-next");
+  const slider = document.getElementById("galeria-proyecto-slider");
+
+  const images = IMAGENES.GALERIA_PROYECTO;
+  if (!track || !images || images.length === 0) return;
+
+  track.innerHTML = "";
+  dotsContainer.innerHTML = "";
+
+  const fallback = IMAGENES.GALERIA_COMPLEMENTARY_TALLER_FALLBACK || "";
+
+  // Permite usar tanto strings como objetos:
+  // "URL"
+  // { url: "URL", orientacion: "vertical", alt: "..." }
+  const normalizarImagen = (item, index) => {
+    if (typeof item === "string") {
+      return {
+        url: item,
+        orientacion: "horizontal",
+        alt: `Fotografía del proyecto Guardianes del Caballito de Mar - Toma ${index + 1}`
+      };
+    }
+
+    return {
+      url: item.url || "",
+      orientacion: item.orientacion || "horizontal",
+      alt: item.alt || `Fotografía del proyecto Guardianes del Caballito de Mar - Toma ${index + 1}`
+    };
+  };
+
+  // Añadir CSS del panning vertical solo una vez
+  if (!document.getElementById("css-pan-vertical-galeria")) {
+    const style = document.createElement("style");
+    style.id = "css-pan-vertical-galeria";
+/**animation: panVerticalGaleria 12s ease-in-out infinite alternate;
+ */
+  style.textContent = `
+  .galeria-img-vertical {
+    object-position: center top;
+    animation: panVerticalGaleria 7s ease-in-out forwards;
+    will-change: object-position;
+  }
+
+  @keyframes panVerticalGaleria {
+    0% {
+      object-position: center top;
+    }
+
+    100% {
+      object-position: center bottom;
+    }
+  }
+`;
+    document.head.appendChild(style);
+  }
+
+  // 1. Renderizar diapositivas
+  images.forEach((item, index) => {
+    const img = normalizarImagen(item, index);
+    const esVertical = img.orientacion.toLowerCase() === "vertical";
+
+    const slide = document.createElement("div");
+    slide.className = `absolute inset-0 w-full h-full transition-opacity duration-[1000ms] ease-in-out ${index === 0 ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'} mediterranean-tint`;
+
+    slide.innerHTML = `
+      <img src="${img.url}" 
+           alt="${img.alt}" 
+           class="w-full h-full object-cover rounded-2xl ${esVertical ? 'galeria-img-vertical' : 'object-center'}"
+           onerror="this.src='${fallback}'">
+      <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-marine-950/80 via-marine-950/10 to-transparent p-6 pt-16 rounded-b-2xl z-10">
+        <p class="text-white font-serif text-sm sm:text-base italic text-center">Acción, aprendizaje y compromiso real · Foto ${index + 1} de ${images.length}</p>
+      </div>
+    `;
+
+    track.appendChild(slide);
+
+    // 2. Renderizar punto indicador
+    const dot = document.createElement("button");
+    dot.className = `w-2 h-2 rounded-full transition-all duration-300 ${index === 0 ? 'bg-terracotta-500 w-5' : 'bg-white/50 hover:bg-white'}`;
+    dot.setAttribute("aria-label", `Ir a la diapositiva ${index + 1}`);
+
+    dot.addEventListener("click", () => {
+      irASlide(index);
+      resetProyectoAutoplay();
+    });
+
+    dotsContainer.appendChild(dot);
+  });
+
+  // 3. Función de transiciones
+function irASlide(index) {
+  const slides = track.children;
+  const dots = dotsContainer.children;
+  if (!slides.length) return;
+
+  slides[currentProyectoSlide].classList.replace("opacity-100", "opacity-0");
+  slides[currentProyectoSlide].classList.add("pointer-events-none");
+  slides[currentProyectoSlide].style.zIndex = "0";
+
+  dots[currentProyectoSlide].classList.remove("bg-terracotta-500", "w-5");
+  dots[currentProyectoSlide].classList.add("bg-white/50");
+
+  currentProyectoSlide = (index + slides.length) % slides.length;
+
+  slides[currentProyectoSlide].classList.replace("opacity-0", "opacity-100");
+  slides[currentProyectoSlide].classList.remove("pointer-events-none");
+  slides[currentProyectoSlide].style.zIndex = "10";
+
+  dots[currentProyectoSlide].classList.remove("bg-white/50");
+  dots[currentProyectoSlide].classList.add("bg-terracotta-500", "w-5");
+
+  // Reiniciar paneo vertical cada vez que una diapositiva vertical se activa
+  const imgVertical = slides[currentProyectoSlide].querySelector(".galeria-img-vertical");
+  if (imgVertical) {
+    imgVertical.style.animation = "none";
+    imgVertical.style.objectPosition = "center top";
+
+    void imgVertical.offsetWidth;
+
+    imgVertical.style.animation = "panVerticalGaleria 7s ease-in-out forwards";
+  }
+}
+
+  function siguienteSlide() {
+    irASlide(currentProyectoSlide + 1);
+  }
+
+  function anteriorSlide() {
+    irASlide(currentProyectoSlide - 1);
+  }
+
+  // 4. Asignar eventos a botones evitando duplicados
+  prevBtn.onclick = () => {
+    anteriorSlide();
+    resetProyectoAutoplay();
+  };
+
+  nextBtn.onclick = () => {
+    siguienteSlide();
+    resetProyectoAutoplay();
+  };
+
+  // 5. Soporte gestos deslizar móvil
+  let startX = 0;
+  let endX = 0;
+
+  slider.ontouchstart = (e) => {
+    startX = e.changedTouches[0].screenX;
+  };
+
+  slider.ontouchend = (e) => {
+    endX = e.changedTouches[0].screenX;
+
+    if (startX - endX > 50) {
+      siguienteSlide();
+      resetProyectoAutoplay();
+    } else if (endX - startX > 50) {
+      anteriorSlide();
+      resetProyectoAutoplay();
+    }
+  };
+
+  // 6. Autoplay
+  function startAutoplay() {
+    stopAutoplay();
+    if (images.length <= 1) return;
+
+    proyectoInterval = setInterval(() => {
+      if (!isProyectoPaused) {
+        siguienteSlide();
+      }
+    }, 7500);
+  }
+
+  function stopAutoplay() {
+    if (proyectoInterval) {
+      clearInterval(proyectoInterval);
+    }
+  }
+
+  function resetProyectoAutoplay() {
+    startAutoplay();
+  }
+
+  slider.onmouseenter = () => {
+    isProyectoPaused = true;
+  };
+
+  slider.onmouseleave = () => {
+    isProyectoPaused = false;
+  };
+
+  startAutoplay();
+  irASlide(0);
+
+  if (typeof lucide !== "undefined") {
+    lucide.createIcons();
+  }
+}
+
+    /**
+     * Carga y renderiza el vídeo principal del proyecto ("Un proyecto que deja huella").
+     * Detecta si es un enlace de inserción iframe de YouTube/Vimeo o un archivo de reproducción MP4 directa.
+     */
+    function renderVideoPrincipal() {
+      const playerWrapper = document.getElementById("video-principal-wrapper");
+      if (!playerWrapper || !MEDIA.VIDEO_PRINCIPAL) return;
+
+      const url = MEDIA.VIDEO_PRINCIPAL;
+      
+      if (url.includes("youtube.com") || url.includes("youtu.be") || url.includes("embed")) {
+        // Renderizar reproductor de YouTube seguro e inclusivo
+        playerWrapper.innerHTML = `
+          <iframe class="absolute inset-0 w-full h-full rounded-2xl shadow-md border border-sand-200/30" 
+                  src="${url}" 
+                  title="Un proyecto que deja huella - Vídeo educativo" 
+                  frameborder="0" 
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                  allowfullscreen>
+          </iframe>`;
+      } else {
+        // Renderizar etiqueta de vídeo HTML5 nativa para reproducción MP4
+        playerWrapper.innerHTML = `
+          <video class="absolute inset-0 w-full h-full rounded-2xl shadow-md object-cover border border-sand-200/30" 
+                 controls 
+                 poster="${IMAGENES.ENTORNO_LAGUNA}">
+            <source src="${url}" type="video/mp4">
+            Tu navegador no soporta la reproducción de este vídeo.
+          </video>`;
+      }
+    }
+
+    /**
+     * Configura y arranca el slideshow de fondo rotativo del Hero.
+     * Soporta la alternancia fluida entre imágenes de alta resolución y vídeos MP4 en bucle,
+     * implementado con fundido cruzado cinematográfico sin saltos en blanco.
+     */
+    function iniciarHeroRotativo() {
+      const slides = IMAGENES.HERO_SLIDES;
+      const container1 = document.getElementById("slide-container-1");
+      const container2 = document.getElementById("slide-container-2");
+
+      if (!container1 || !container2) return;
+
+      if (!slides || slides.length === 0) {
+        setSlideInLayer(container1, { tipo: "imagen", url: IMAGENES.HERO_FONDO });
+        return;
+      }
+
+      // Cargar primera diapositiva inmediatamente
+      setSlideInLayer(container1, slides[0]);
+
+      if (slides.length <= 1) return;
+
+      // Precargar diapositivas para asegurar el fundido cruzado óptimo
+      slides.forEach((slide, idx) => {
+        if (idx > 0 && slide.tipo === "imagen") {
+          const preImg = new Image();
+          preImg.src = slide.url;
+        }
+      });
+
+      let idxActual = 0;
+      let enContainer1 = true;
+
+      setInterval(() => {
+        idxActual = (idxActual + 1) % slides.length;
+        const sigSlide = slides[idxActual];
+        const capaActivar = enContainer1 ? container2 : container1;
+        const capaDesactivar = enContainer1 ? container1 : container2;
+
+        setSlideInLayer(capaActivar, sigSlide);
+
+        // Si es imagen, hacemos el cambio al instante. Si es video, esperamos a que el buffer empiece.
+        if (sigSlide.tipo === "video") {
+          const vidElement = capaActivar.querySelector("video");
+          if (vidElement) {
+            vidElement.onplaying = () => {
+              capaDesactivar.classList.replace("opacity-100", "opacity-0");
+              capaActivar.classList.replace("opacity-0", "opacity-100");
+              enContainer1 = !enContainer1;
+            };
+          }
+        } else {
+          const imgElement = capaActivar.querySelector("img");
+          if (imgElement) {
+            imgElement.onload = () => {
+              capaDesactivar.classList.replace("opacity-100", "opacity-0");
+              capaActivar.classList.replace("opacity-0", "opacity-100");
+              enContainer1 = !enContainer1;
+            };
+          }
+        }
+      }, 9500); // Rotación elegante cada 9.5 segundos
+    }
+
+    /**
+     * Helper para inyectar dinámicamente elementos de tipo imagen o vídeo en el slideshow
+     */
+    function setSlideInLayer(layer, slideData) {
+      layer.innerHTML = "";
+      if (slideData.tipo === "video") {
+        const video = document.createElement("video");
+        video.className = "absolute inset-0 w-full h-full object-cover filter saturate-[1.05] contrast-[1.08] brightness-[0.96] transition-all duration-1000";
+        video.src = slideData.url;
+        video.poster = slideData.poster || IMAGENES.HERO_FONDO;
+        video.autoplay = true;
+        video.muted = true;
+        video.loop = true;
+        video.setAttribute("playsinline", "");
+        video.setAttribute("muted", "");
+        video.setAttribute("autoplay", "");
+        video.onloadeddata = () => {
+          video.play().catch(() => {/* Bloqueo de reproducción evitado */});
+        };
+        layer.appendChild(video);
+      } else {
+        const img = document.createElement("img");
+        img.className = "absolute inset-0 w-full h-full object-cover object-center filter saturate-[1.05] contrast-[1.08] brightness-[0.96] transition-all duration-1000";
+        img.src = slideData.url;
+        img.alt = slideData.alt || "Imagen representativa del proyecto";
+        img.onerror = () => { img.src = IMAGENES.HERO_FONDO_FALLBACK; };
+        layer.appendChild(img);
+      }
+    }
+
+/**
+ * Renderiza dinámicamente las tarjetas del Banco de Recursos en el DOM.
+ * @param {string} categoriaFiltrada - Categoría opcional para filtrar los recursos.
+ */
+
+/**
+ * Renderiza dinámicamente las tarjetas del Banco de Recursos en el DOM.
+ * Detecta automáticamente vídeos para abrirlos en el modal premium.
+ * @param {string} categoriaFiltrada - Categoría opcional para filtrar los recursos.
+ */
+function renderRecursosEducativos(categoriaFiltrada = "todos") {
+  const container = document.getElementById("recursos-grid");
+  if (!container) return;
+
+  container.innerHTML = ""; // Limpiar el grid
+
+  // Filtrar recursos según la selección
+  const recursosAmostrar = RECURSOS_EDUCATIVOS.filter(rec => {
+  if (categoriaFiltrada === "todos") return true;
+
+  if (Array.isArray(rec.categorias)) {
+    return rec.categorias.includes(categoriaFiltrada);
+  }
+
+  return rec.categoria === categoriaFiltrada;
+});
+
+  if (recursosAmostrar.length === 0) {
+    container.innerHTML = `
+      <div class="col-span-full text-center py-12 text-slate-500 font-serif italic">
+        No se encontraron recursos en esta categoría.
+      </div>`;
+    return;
+  }
+
+  // Generar las tarjetas didácticas
+  recursosAmostrar.forEach(rec => {
+    const card = document.createElement("div");
+    
+    // Evaluamos si el recurso actual es de la categoría de vídeos
+   // Evaluamos si el recurso debe abrirse en modal
+const abreModal = rec.tipo === "video" || rec.tipo === "interactivo" || rec.categoria === "Vídeos y sensibilización";
+const esVideo = rec.tipo === "video" || rec.categoria === "Vídeos y sensibilización";
+    
+    // Estilos de tarjeta ligeramente distintos si es un vídeo (tono un poco más cálido de fondo)
+    card.className = esVideo
+      ? "recurso-card bg-sand-50/90 p-6 rounded-2xl border border-sand-200/60 flex flex-col justify-between hover:bg-white hover:shadow-md group transition-all duration-400"
+      : "recurso-card bg-sand-50/60 p-6 rounded-2xl border border-sand-200/50 flex flex-col justify-between hover:bg-white hover:shadow-sm transition-all duration-400";
+    
+    // Renderizado condicional del botón inferior (Enlace externo vs Modal interactivo)
+   const botonAccion = abreModal
+  ? `<button onclick="openVideoModal('${rec.enlace}', '${rec.tipo || 'video'}')" 
+             class="inline-flex items-center gap-1.5 text-xs font-bold ${rec.tipo === 'interactivo' ? 'text-marine-600 hover:text-marine-800' : 'text-terracotta-600 hover:text-terracotta-500'} transition-colors uppercase tracking-wider focus:outline-none cursor-pointer">
+      ${rec.textoBoton} <i data-lucide="${rec.tipo === 'interactivo' ? 'mouse-pointer-click' : 'play'}" class="w-3.5 h-3.5 ml-0.5 ${rec.tipo === 'video' ? 'fill-current' : ''}"></i>
+     </button>`
+  : `<a href="${rec.enlace}" target="_blank" rel="noopener noreferrer" 
+        class="inline-flex items-center gap-1.5 text-xs font-bold text-marine-600 hover:text-marine-800 transition-colors uppercase tracking-wider">
+      ${rec.textoBoton} <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+     </a>`;
+
+    card.innerHTML = `
+      <div class="space-y-4">
+        <div class="flex items-center justify-between">
+          <span class="text-[10px] font-bold uppercase tracking-wider ${esVideo ? 'text-terracotta-600' : 'text-marine-600'}">${rec.categorias ? rec.categorias.join(" · ") : rec.categoria}</span>
+          <div class="p-2 ${esVideo ? 'bg-terracotta-50 text-terracotta-600' : 'bg-marine-50 text-marine-600'} rounded-lg">
+            <i data-lucide="${rec.icono || 'file-text'}" class="w-4 h-4"></i>
+          </div>
+        </div>
+        <h4 class="font-serif font-bold text-lg text-marine-950 leading-snug">${rec.titulo}</h4>
+        <p class="text-xs text-slate-600 leading-relaxed font-normal line-clamp-4">${rec.descripcion}</p>
+      </div>
+      <div class="mt-6 pt-4 border-t border-sand-100">
+        ${botonAccion}
+      </div>
+    `;
+    container.appendChild(card);
+  });
+
+  // Re-inicializar iconos de Lucide para los nuevos nodos inyectados
+  lucide.createIcons();
+}
+
+
+
+
+
+/**
+ * Filtra los recursos cambiando la apariencia del botón activo.
+ */
+function filtrarRecursos(categoria) {
+  // 1. Renderizar tarjetas filtradas
+  renderRecursosEducativos(categoria);
+
+  // 2. Gestionar estilos visuales de los botones de filtro
+  const botonesMap = {
+    "todos": "filter-btn-todos",
+    "Cuentos y lecturas": "filter-btn-cuentos",
+    "Vídeos y sensibilización": "filter-btn-videos",
+    "Actividades creativas": "filter-btn-actividades",
+    "Conocer el Mar Menor": "filter-btn-marmenor"
+  };
+
+  Object.entries(botonesMap).forEach(([catKey, btnId]) => {
+    const btn = document.getElementById(btnId);
+    if (!btn) return;
+    
+    if (catKey === categoria) {
+      btn.className = "px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-300 bg-marine-800 text-white shadow-sm";
+    } else {
+      btn.className = "px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-300 bg-sand-100 text-slate-700 hover:bg-sand-200";
+    }
+  });
+}
+
+
+  </script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+            serif: ['Playfair Display', 'serif'],
+          },
+          colors: {
+            marine: {
+              50: '#f2f8fa',
+              100: '#e1eff4',
+              200: '#c5e0eb',
+              600: '#007a9b',
+              800: '#0c273f',
+              900: '#061726',
+              950: '#030b13',
+            },
+            terracotta: {
+              50: '#fdf6f4',
+              100: '#fbece8',
+              400: '#df7961',
+              500: '#cd5437',
+              600: '#b24126',
+            },
+            sand: {
+              50: '#fcfaf7',
+              100: '#f6f1ea',
+              200: '#ebdcc5',
+              300: '#d9bf9c',
+            }
+          }
+        }
+      }
+    }
+
+
+  </script>
+
+  <style>
+    /* Transiciones fluidas y orgánicas */
+    .fade-in-section {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 1.4s cubic-bezier(0.16, 1, 0.3, 1), transform 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform;
+    }
+    .fade-in-section.is-visible {
+      opacity: 1;
+      transform: none;
+    }
+    
+    /* Suavizado de bordes y profundidad natural */
+    .editorial-border {
+      border-color: rgba(217, 191, 156, 0.25);
+    }
+    
+    /* Efecto de máscara sutil de luz mediterránea sobre imágenes */
+    .mediterranean-tint {
+      position: relative;
+    }
+    .mediterranean-tint::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(223, 121, 97, 0.04); /* Tono terracota ultra suave para unificar la fotografía */
+      pointer-events: none;
+      transition: background-color 0.4s ease;
+    }
+    .group:hover.mediterranean-tint::after {
+      background: rgba(223, 121, 97, 0.02);
+    }
+
+/* Bordes y efectos para las tarjetas del Banco de Recursos */
+.recurso-card {
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease, box-shadow 0.4s ease;
+}
+.recurso-card:hover {
+  border-color: rgba(0, 122, 155, 0.3); /* Marine-600 */
+}
+
+/* Bloqueo del scroll nativo al activar el reproductor */
+body.modal-video-active {
+  overflow: hidden;
+  /* Evita el parpadeo horizontal en navegadores de escritorio */
+  scrollbar-gutter: stable; 
+}
+
+
+  </style>
+</head>
+<body class="bg-sand-50 text-slate-850 font-sans antialiased overflow-x-hidden">
+
+  <!-- NAVEGACIÓN REFINADA (ESTILO EDITORIAL MINIMALISTA) -->
+  <nav class="fixed top-0 left-0 w-full z-50 bg-sand-50/90 backdrop-blur-md border-b border-sand-200/40 transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+      <a href="#" class="flex items-center gap-3">
+<div class="w-20 h-20 rounded-xl overflow-hidden shadow-md">
+  <img 
+    class="logoCaballito w-full h-full object-cover drop-shadow-lg"
+    src=""
+    alt="Logo Guardianes del Caballito de Mar"
+  >
+</div>
+        <div>
+          <span class="font-serif font-bold text-base tracking-normal text-marine-900 block leading-tight">Guardianes del Caballito</span>
+          <span class="block text-[8px] text-terracotta-600 font-bold tracking-[0.2em] uppercase">Mar Menor · Aprendizaje Servicio</span>
+        </div>
+      </a>
+
+      <!-- Menú Escritorio -->
+      <div class="hidden md:flex items-center gap-8 text-[11px] font-extrabold uppercase tracking-[0.15em] text-slate-600">
+        <a href="#el-mar-menor" class="hover:text-marine-600 transition-colors">Nuestro Entorno</a>
+        <a href="#los-alumnos" class="hover:text-marine-600 transition-colors">La Acción Educativa</a>
+        <a href="#comunidad" class="hover:text-marine-600 transition-colors">Comunidad</a>
+        <a href="#video-seccion" class="hover:text-marine-600 transition-colors">El Documental</a>
+        <a href="#galeria" class="hover:text-marine-600 transition-colors">Momentos</a>
+        <a href="#itinerario" class="hover:text-marine-600 transition-colors">Itinerario</a>
+        <a href="#recursos-didacticos" class="hover:text-marine-600 transition-colors">Recursos</a>
+        <a href="#cierre" class="bg-gradient-to-r from-marine-800 to-marine-900 hover:from-marine-900 hover:to-marine-950 text-white px-5 py-2.5 rounded-full hover:shadow-md transition-all text-[10px]">
+          Saber más
+        </a>
+      </div>
+
+      <!-- Hamburguesa Móvil -->
+      <button class="md:hidden text-marine-900" onclick="toggleMenu()">
+        <i data-lucide="menu" id="menu-icon" class="w-6 h-6"></i>
+      </button>
+    </div>
+
+    <!-- Menú Móvil -->
+    <div id="mobile-menu" class="hidden md:hidden px-6 py-6 border-t border-sand-200 bg-sand-50 flex flex-col gap-4 shadow-inner">
+      <a href="#el-mar-menor" onclick="toggleMenu()" class="text-slate-700 hover:text-marine-600 py-1 font-semibold text-base">Nuestro Entorno</a>
+      <a href="#los-alumnos" onclick="toggleMenu()" class="text-slate-700 hover:text-marine-600 py-1 font-semibold text-base">La Acción Educativa</a>
+      <a href="#comunidad" onclick="toggleMenu()" class="text-slate-700 hover:text-marine-600 py-1 font-semibold text-base">Comunidad</a>
+      <a href="#video-seccion" onclick="toggleMenu()" class="text-slate-700 hover:text-marine-600 py-1 font-semibold text-base">El Documental</a>
+      <a href="#galeria" onclick="toggleMenu()" class="text-slate-700 hover:text-marine-600 py-1 font-semibold text-base">Momentos</a>
+      <a href="#itinerario" onclick="toggleMenu()" class="text-slate-700 hover:text-marine-600 py-1 font-semibold text-base">Itinerario</a>
+      <a href="#recursos-didacticos" onclick="toggleMenu()" class="text-slate-700 hover:text-marine-600 py-1 font-semibold text-base">Recursos</a>
+      <a href="#cierre" onclick="toggleMenu()" class="bg-marine-800 text-white text-center py-3 rounded-full font-semibold mt-2">
+        Saber más
+      </a>
+    </div>
+  </nav>
+
+  <!-- 1. HERO SECTION: MÁXIMA PROFUNDIDAD VISUAL Y GRACIA EDITORIAL -->
+  <section class="relative min-h-[95vh] flex items-center justify-center overflow-hidden pt-20 bg-sand-100">
+    <!-- Capa de imagen de fondo: Fondos rotativos controlados por JS sin parpadeos -->
+    <div class="absolute inset-0 z-0">
+      <!-- Overlay degradado perfectamente balanceado para recuperar profundidad sin oscurecer -->
+      <div class="absolute inset-0 bg-gradient-to-b from-sand-100/30 via-sand-50/65 to-sand-50/95 z-10"></div>
+      
+      <!-- Contenedor del Slideshow con dos capas absolutas para el fundido cruzado (Híbrido) -->
+      <div id="hero-slideshow-container" class="absolute inset-0 w-full h-full">
+        <div id="slide-container-1" class="absolute inset-0 w-full h-full transition-opacity duration-[1500ms] ease-in-out opacity-100"></div>
+        <div id="slide-container-2" class="absolute inset-0 w-full h-full transition-opacity duration-[1500ms] ease-in-out opacity-0"></div>
+      </div>
+    </div>
+
+    <div class="max-w-6xl mx-auto px-6 relative z-20 py-24 flex flex-col items-center text-center">
+      <!-- Etiqueta del proyecto de Aprendizaje Servicio -->
+      <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/95 border border-sand-200/80 shadow-sm mb-12">
+        <span class="w-2 h-2 rounded-full bg-terracotta-500"></span>
+        <span class="text-[10px] font-bold uppercase tracking-[0.25em] text-marine-900">Aprendizaje Servicio · Educación Primaria</span>
+      </div>
+
+      <!-- Título Principal con Espaciado y Ritmo Editorial Premium -->
+  <h1 class="font-['Playfair_Display'] font-bold text-5xl sm:text-7xl md:text-8xl text-marine-950 tracking-tight leading-[0.95] mb-6 max-w-5xl">
+  <span class="text-marine-950">
+    Guardianes del
+  </span>
+
+  <span class="block text-gradient bg-clip-text text-transparent bg-gradient-to-r from-marine-600 via-marine-800 to-terracotta-500">
+    Caballito de Mar
+  </span>
+</h1>
+
+
+      <!-- Lema del Proyecto -->
+      <p class="font-serif text-xl sm:text-2xl md:text-3xl font-normal text-slate-800 italic max-w-3xl mb-8 leading-relaxed">
+        “Si cuidamos la naturaleza, siempre habrá esperanza.”
+      </p>
+
+      <!-- Divisor sutil mediterráneo -->
+      <div class="w-16 h-0.5 bg-terracotta-400/55 mb-10"></div>
+
+      <!-- Introducción Cercana -->
+      <p class="text-slate-800 text-base sm:text-lg md:text-xl max-w-3xl leading-relaxed mb-14 font-normal">
+        "Guardianes del Caballito de Mar" es una experiencia de Aprendizaje-Servicio donde las alianzas entre instituciones y la innovación educativa se unen por un fin común. Inspirados por la memoria oral de sus abuelos y el cuento de "Simón", nuestros alumnos de 1º ciclo de Primaria han trascendido el aula para colaborar de forma activa con expertos locales en la preservación del Hippocampus guttulatus, convirtiéndose en agentes de cambio real para el ecosistema del Mar Menor.
+        </p>
+
+      <!-- Botones de Acción Orgánicos -->
+      <div class="flex flex-col sm:flex-row gap-5 justify-center w-full max-w-lg">
+        <a href="#los-alumnos" class="px-8 py-4 bg-marine-800 hover:bg-marine-950 text-white rounded-full font-bold shadow-sm hover:shadow transition-all hover:scale-[1.01] flex items-center justify-center gap-2">
+          La Acción del Alumnado
+          <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </a>
+        <a href="#el-mar-menor" class="px-8 py-4 bg-white hover:bg-slate-50 text-slate-800 rounded-full font-bold border border-sand-200/80 shadow-sm transition-all hover:scale-[1.01] flex items-center justify-center">
+          El Latido del Mar Menor
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. BLOQUE: EL ENTORNO (Luz, Realidad y Legibilidad Optimizada) -->
+  <section id="el-mar-menor" class="py-32 bg-white relative fade-in-section">
+    <div class="max-w-7xl mx-auto px-6">
+      
+      <!-- Cabecera Editorial -->
+      <div class="max-w-3xl mb-20">
+        <span class="text-xs uppercase tracking-[0.25em] text-terracotta-600 font-bold block mb-4">
+          El Paisaje Que Custodiamos
+        </span>
+        <h2 class="font-serif font-bold text-3xl sm:text-4xl md:text-5xl text-marine-950 tracking-tight leading-tight">
+          El Mar Menor: Una laguna única en busca de una nueva oportunidad.
+        </h2>
+      </div>
+
+      <!-- Fila de Enfoque Humano y Ambiental -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+        <!-- Imagen del Mar Menor Real -->
+        <div class="lg:col-span-6 relative rounded-2xl overflow-hidden shadow-md bg-sand-100 mediterranean-tint border border-sand-200/40">
+          <img data-img="ENTORNO_LAGUNA" data-fallback="ENTORNO_LAGUNA_FALLBACK" src="" 
+               alt="Paisaje real de la laguna del Mar Menor con su luz natural y aguas serenas" 
+               class="w-full h-[440px] object-cover object-center saturate-[0.98] contrast-[1.02]">
+          <div class="absolute bottom-6 left-6 right-6 bg-white/95 p-6 rounded-xl shadow-md border border-sand-100">
+            <span class="text-xs font-bold text-terracotta-600 uppercase tracking-widest block mb-1">Un ecosistema frágil</span>
+            <p class="text-sm text-slate-800 leading-relaxed font-normal">
+              La mayor laguna costera de Europa clama por el equilibrio. El caballito de mar es nuestro centinela silencioso bajo el agua; cuidarlo es sanar toda la región.
+            </p>
+          </div>
+        </div>
+
+        <!-- Tarjetas Educativas de Sensibilización con Contraste Mejorado -->
+        <div class="lg:col-span-6 flex flex-col gap-6">
+          
+          <div class="p-6 sm:p-8 rounded-2xl bg-sand-50/80 border border-sand-200/40 relative overflow-hidden transition-all duration-350 hover:bg-sand-100/40">
+            <div class="flex gap-4 items-start">
+              <div class="p-3 bg-terracotta-100 text-terracotta-600 rounded-xl">
+                <i data-lucide="shield-alert" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <h4 class="font-serif text-xl sm:text-2xl font-bold text-marine-950 mb-2">La fragilidad bajo el agua</h4>
+                <p class="text-slate-700 text-sm sm:text-base leading-relaxed font-normal">
+                  La disminución drástica de praderas marinas ha puesto al caballito de mar en peligro. Entender su situación es el primer paso para emprender acciones de restauración y respeto.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="p-6 sm:p-8 rounded-2xl bg-sand-50/80 border border-sand-200/40 relative overflow-hidden transition-all duration-350 hover:bg-sand-100/40">
+            <div class="flex gap-4 items-start">
+              <div class="p-3 bg-marine-100 text-marine-600 rounded-xl">
+                <i data-lucide="eye" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <h4 class="font-serif text-xl sm:text-2xl font-bold text-marine-950 mb-2">Visibilidad para la conservación</h4>
+                <p class="text-slate-700 text-sm sm:text-base leading-relaxed font-normal">
+                  Lo que no se ve, se olvida. Llevamos la realidad del fondo marino a las aulas y hogares, utilizando el arte y la comunicación como puentes de empatía colectiva.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="p-6 sm:p-8 rounded-2xl bg-sand-50/80 border border-sand-200/40 relative overflow-hidden transition-all duration-350 hover:bg-sand-100/40">
+            <div class="flex gap-4 items-start">
+              <div class="p-3 bg-emerald-100/60 text-emerald-800 rounded-xl">
+                <i data-lucide="graduation-cap" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <h4 class="font-serif text-xl sm:text-2xl font-bold text-marine-950 mb-2">Aprendizaje con propósito</h4>
+                <p class="text-slate-700 text-sm sm:text-base leading-relaxed font-normal">
+                  El aprendizaje se vuelve significativo cuando se combina el interés genuino del alumnado con la realidad que le rodea, haciendo más motivadores los contenidos curriculares.
+                </p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. BLOQUE: LOS ALUMNOS ACTÚAN (Diseño Preparado para Fotos Reales) -->
+  <section id="los-alumnos" class="py-32 bg-sand-100/40 relative overflow-hidden fade-in-section">
+    <div class="max-w-7xl mx-auto px-6">
+      
+      <!-- Cabecera de Sección -->
+      <div class="text-center max-w-3xl mx-auto mb-20">
+        <span class="text-xs uppercase tracking-[0.25em] text-marine-600 font-bold block mb-3">
+          El Alumnado en Acción Real
+        </span>
+        <h2 class="font-serif font-bold text-3xl sm:text-4xl md:text-5xl text-marine-950 tracking-tight">
+          La ternura y el rigor de una infancia activa
+        </h2>
+        <p class="text-slate-700 text-base sm:text-lg mt-4 font-normal max-w-2xl mx-auto leading-relaxed">
+          Sin montajes artificiosos. La fuerza del proyecto radica en el esfuerzo conjunto, la experimentación directa en el aula y el orgullo de ver florecer ideas con repercusión social.
+        </p>
+      </div>
+
+      <!-- Grid de Acciones de Alumnos -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10">
+        
+        <!-- Tarjeta de Acción 1 (Ciencia) -->
+        <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-sand-200/40 flex flex-col h-full group transition-all duration-500 hover:-translate-y-1 hover:shadow-md">
+          <div class="h-64 overflow-hidden relative bg-sand-200 mediterranean-tint">
+            <img data-img="ACCION_CIENCIA" data-fallback="ACCION_CIENCIA_FALLBACK" src="" 
+                 alt="Manos de alumnos examinando muestras de agua y conchas marinas en el laboratorio escolar" 
+                 class="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-700">
+            <div class="absolute top-4 left-4 z-20 px-3 py-1 bg-marine-800 text-white text-[9px] font-bold rounded-full uppercase tracking-wider">
+              Investigadores de la vida marina
+            </div>
+          </div>
+          <div class="p-8 flex flex-col flex-grow">
+            <h4 class="font-serif text-xl sm:text-2xl font-bold text-marine-950 mb-3">Investigar para conocer</h4>
+            <p class="text-slate-700 text-sm leading-relaxed font-normal flex-grow">
+              A través de una búsqueda guiada de información en entornos digitales, nuestros pequeños investigadores desarrollan sus habilidades de indagación mientras conocen las características biológicas del caballito de mar.
+            </p>
+          </div>
+        </div>
+
+        <!-- Tarjeta de Acción 2 (AFESMO) -->
+        <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-sand-200/40 flex flex-col h-full group transition-all duration-500 hover:-translate-y-1 hover:shadow-md">
+          <div class="h-64 overflow-hidden relative bg-sand-200 mediterranean-tint">
+            <img data-img="ACCION_COSTURA" data-fallback="ACCION_COSTURA_FALLBACK" src="" 
+                 alt="Detalle de manualidades escolares con telas, lanas y materiales reciclados para crear caballitos de mar" 
+                 class="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-700">
+            <div class="absolute top-4 left-4 z-20 px-3 py-1 bg-terracotta-500 text-white text-[9px] font-bold rounded-full uppercase tracking-wider">
+              Talleres artesanales
+            </div>
+          </div>
+          <div class="p-8 flex flex-col flex-grow">
+            <h4 class="font-serif text-xl sm:text-2xl font-bold text-marine-950 mb-3">La costura del caballito de felpa</h4>
+            <p class="text-slate-700 text-sm leading-relaxed font-normal flex-grow">
+              De la mano de AFESMO y de las familias, nuestros pequeños aprendices transforman telas recicladas en adorables caballitos de mar de en forma de llaveros y peluches. A través de esta actividad compartida, descubren que cuidar del medio ambiente y cuidar de las personas son acciones que van de la mano, desarrollando valores de respeto, empatía e inclusión social.
+            </p>
+          </div>
+        </div>
+
+        <!-- Tarjeta de Acción 3 (Comunicación) -->
+        <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-sand-200/40 flex flex-col h-full group transition-all duration-500 hover:-translate-y-1 hover:shadow-md">
+          <div class="h-64 overflow-hidden relative bg-sand-200 mediterranean-tint">
+            <img data-img="ACCION_COMUNICACION" data-fallback="ACCION_COMUNICACION_FALLBACK" src="" 
+                 alt="Alumnos exponiendo carteles de concienciación ambiental hechos a mano a otras personas" 
+                 class="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-700">
+            <div class="absolute top-4 left-4 z-20 px-3 py-1 bg-emerald-700 text-white text-[9px] font-bold rounded-full uppercase tracking-wider">
+            Voz del Alumnado
+            </div>
+          </div>
+          <div class="p-8 flex flex-col flex-grow">
+            <h4 class="font-serif text-xl sm:text-2xl font-bold text-marine-950 mb-3">Eco-mensajes ciudadanos</h4>
+            <p class="text-slate-700 text-sm leading-relaxed font-normal flex-grow">
+              Los estudiantes diseñan campañas reales de difusión, a través de podcast y vídeos cortos explicando cómo cuidar de nuestras playas y la valiosa labor de la Asociación Hippocampus.
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 4. BLOQUE: LA RED COMUNITARIA (Humanizada, Cercana y Auténtica) -->
+  <section id="comunidad" class="py-28 bg-white relative fade-in-section">
+    <div class="max-w-7xl mx-auto px-6">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+        <!-- Texto Descriptivo con Enfoque Humano y Pedagógico -->
+        <div class="lg:col-span-6">
+          <span class="text-terracotta-600 text-xs font-bold tracking-[0.25em] uppercase block mb-3">
+            Cuidar Juntos Nuestro Mar
+          </span>
+          <h3 class="font-serif font-bold text-3xl sm:text-4xl text-marine-950 tracking-tight mb-6">
+            Una red vecinal unida por la ciencia y el cuidado mutuo.
+          </h3>
+          <p class="text-slate-700 text-base font-normal leading-relaxed mb-8">
+            Este proyecto de Aprendizaje Servicio vincula a toda la comunidad educativa. Con el soporte de los naturalistas de la **Asociación Hipocampus** y el afecto del taller inclusivo de **AFESMO**, el alumnado comprueba el valor transformador de trabajar con personas de distintos ámbitos por un fin común.
+          </p>
+          
+          <!-- Detalle de Colaboradores Locales -->
+          <div class="space-y-4">
+            <div class="flex items-start gap-4 p-4 rounded-xl bg-sand-50/60 border border-sand-200/40">
+              <div class="p-2 bg-marine-50 text-marine-600 rounded-lg">
+                <i data-lucide="shield-check" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <h5 class="font-serif font-bold text-sm text-marine-950">Asociación Hipocampus</h5>
+                <p class="text-xs text-slate-600 leading-relaxed mt-0.5">Custodios ambientales que comparten su conocimiento científico para enriquecer el trabajo diario de los niños.</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4 p-4 rounded-xl bg-sand-50/60 border border-sand-200/40">
+              <div class="p-2 bg-terracotta-50 text-terracotta-600 rounded-lg">
+                <i data-lucide="heart-handshake" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <h5 class="font-serif font-bold text-sm text-marine-950">AFESMO (Asociación de Salud Mental)</h5>
+                <p class="text-xs text-slate-600 leading-relaxed mt-0.5">Personas usuarias tejen un legado solidario en cada caballito, promoviendo la integración y el valor de lo artesanal.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Narrativa de Logros: Refinada, sin estadísticas corporativas frías -->
+<!-- Narrativa de Logros: Refinada, sin estadísticas corporativas frías -->
+<div class="lg:col-span-6 bg-sand-100/50 rounded-3xl p-8 sm:p-12 border border-sand-200/50 shadow-sm">
+  <h4 class="font-serif font-bold text-xl text-marine-950 mb-8 text-center lg:text-left">
+    El fruto del esfuerzo compartido
+  </h4>
+  
+  <div class="space-y-6">
+    
+    <!-- BLOQUE 1 -->
+    <div class="flex items-center gap-6 pb-6 border-b border-sand-200/40">
+      
+      <div class="w-32 flex items-center justify-center shrink-0">
+        <span class="font-serif font-bold text-4xl sm:text-5xl text-marine-600 leading-none">
+          450
+        </span>
+      </div>
+
+      <div class="text-sm text-slate-700">
+        <strong class="text-slate-900 font-bold block mb-1">
+          Pequeños guardianes en marcha.
+        </strong>
+        Estudiantes de primaria que aprenden cuidando directamente su costa.
+      </div>
+
+    </div>
+
+    <!-- BLOQUE 2 -->
+    <div class="flex items-center gap-6 pb-6 border-b border-sand-200/40">
+      
+      <div class="w-32 flex items-center justify-center shrink-0">
+        <span class="font-serif font-bold text-4xl sm:text-5xl text-terracotta-500 leading-none">
+          +100
+        </span>
+      </div>
+
+      <div class="text-sm text-slate-700">
+        <strong class="text-slate-900 font-bold block mb-1">
+          Abrazos solidarios creados.
+        </strong>
+        Centenares de caballitos artesanales convertidos en apoyo real para la preservación de la especie.
+      </div>
+
+    </div>
+
+    <!-- BLOQUE 3 -->
+    <div class="flex items-center gap-6">
+      
+   <div class="w-32 flex items-center justify-center shrink-0">
+  <span class="font-serif font-bold text-4xl sm:text-5xl text-emerald-600 leading-none">
+    +500
+  </span>
+</div>
+
+      <div class="text-sm text-slate-700">
+        <strong class="text-slate-900 font-bold block mb-1">
+          Vecinos concienciados.
+        </strong>
+        Familias y visitantes han recibido el eco del mensaje escolar y su llamada al cuidado del Mar Menor.
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================
+       NUEVA SECCIÓN DE VÍDEO PRINCIPAL ("Un proyecto que deja huella")
+       ======================================================== -->
+  <section id="video-seccion" class="py-24 bg-sand-50 relative fade-in-section border-t border-sand-200/40">
+    <div class="max-w-6xl mx-auto px-6">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <!-- Bloque Narrativo del Vídeo -->
+        <div class="lg:col-span-5 space-y-6">
+          <span class="text-xs uppercase tracking-[0.25em] text-marine-600 font-bold block">
+            El Latido del Proyecto en Movimiento
+          </span>
+          <h2 class="font-serif font-bold text-3xl sm:text-4xl text-marine-950 tracking-tight leading-tight">
+            Un proyecto que deja huella
+          </h2>
+          <p class="text-slate-700 text-base sm:text-lg font-normal leading-relaxed">
+            En este vídeo se recoge el camino vivido por el alumnado: descubrir, investigar, crear y actuar para proteger el caballito de mar y el entorno del Mar Menor.
+          </p>
+          <div class="flex items-center gap-3 text-terracotta-600 font-serif italic text-sm">
+            <i data-lucide="play-circle" class="w-5 h-5 text-terracotta-500"></i>
+            <span>Ver el fotorreportaje del alumnado</span>
+          </div>
+        </div>
+
+        <!-- Contenedor del Reproductor de Vídeo Elegante y Adaptable -->
+        <div class="lg:col-span-7">
+          <div class="relative w-full overflow-hidden rounded-2xl bg-slate-950 shadow-xl border border-sand-200/30" style="padding-top: 56.25%;">
+            <!-- El iframe o el nodo de vídeo se inyectará dinámicamente aquí -->
+            <div id="video-principal-wrapper" class="absolute inset-0 w-full h-full"></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 5. GALERÍA MODERNA Y HUMANA: DISEÑO TIPO REVISTA/FOTORREPORTAJE ASIMÉTRICO -->
+  <section id="galeria" class="py-32 bg-sand-100/30 relative overflow-hidden fade-in-section border-t border-sand-200/30">
+    <div class="max-w-7xl mx-auto px-6">
+      
+      <!-- Cabecera de Sección -->
+      <div class="max-w-3xl mb-18">
+        <span class="text-xs uppercase tracking-[0.25em] text-marine-600 font-bold block mb-3">
+          El Latido del Aula y del Mar
+        </span>
+        <h2 class="font-serif font-bold text-3xl sm:text-4xl md:text-5xl text-marine-950 tracking-tight leading-tight">
+          Momentos guardados en nuestra memoria pedagógica.
+        </h2>
+      </div>
+
+      <!-- Cuadrícula Asimétrica de Fotorreportaje (Estilo Revista Visual) -->
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-stretch">
+        
+        <!-- Foto 1 (Imagen Dominante - Aspecto Editorial Destacado) -->
+        <div class="md:col-span-8 relative group overflow-hidden rounded-2xl shadow-sm bg-white cursor-pointer mediterranean-tint border border-sand-200/40 min-h-[460px] flex flex-col justify-end">
+          <div class="absolute inset-0 bg-gradient-to-t from-marine-950/85 via-marine-950/30 to-transparent opacity-65 group-hover:opacity-75 transition-opacity z-10"></div>
+          <img data-img="GALERIA_DOMINANTE" src="" 
+               alt="Pequeño caballito de mar en su entorno acuático y luz mediterránea" 
+               class="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-700">
+          <div class="absolute bottom-8 left-8 right-8 z-20">
+            <span class="text-[9px] font-bold bg-white text-marine-900 px-3 py-1 rounded-full uppercase tracking-wider">Biodiversidad marina</span>
+            <h4 class="font-serif text-xl sm:text-2xl font-bold text-white mt-3">La vida que late bajo la superficie del Mar Menor</h4>
+          </div>
+        </div>
+
+        <!-- Columna de Fotografías Complementarias Stacked -->
+        <div class="md:col-span-4 flex flex-col gap-8 justify-between">
+          
+          <!-- Foto 2 (Taller) -->
+          <div class="relative group overflow-hidden rounded-2xl shadow-sm bg-white cursor-pointer mediterranean-tint border border-sand-200/40 h-64">
+            <div class="absolute inset-0 bg-gradient-to-t from-marine-950/80 via-transparent to-transparent opacity-55 group-hover:opacity-70 transition-opacity z-10"></div>
+            <img data-img="GALERIA_COMPLEMENTARY_TALLER" data-fallback="GALERIA_COMPLEMENTARY_TALLER_FALLBACK" src="" 
+                 alt="Niños colaborando estrechamente en un taller escolar de pintura y costura" 
+                 class="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-700">
+            <div class="absolute bottom-6 left-6 z-20">
+              <span class="text-[9px] font-bold bg-terracotta-500 text-white px-3 py-1 rounded-full uppercase tracking-wider">Creatividad</span>
+              <h4 class="font-serif text-base font-bold text-white mt-2">Talleres compartidos</h4>
+            </div>
+          </div>
+
+          <!-- Foto 3 (Naturaleza e Infancia) -->
+          <div class="relative group overflow-hidden rounded-2xl shadow-sm bg-white cursor-pointer mediterranean-tint border border-sand-200/40 flex-grow min-h-[220px]">
+            <div class="absolute inset-0 bg-gradient-to-t from-marine-950/80 via-transparent to-transparent opacity-55 group-hover:opacity-70 transition-opacity z-10"></div>
+            <img data-img="GALERIA_COMPLEMENTARY_ESPERANZA" data-fallback="GALERIA_COMPLEMENTARY_ESPERANZA_FALLBACK" src="" 
+                 alt="Niños sonriendo alegremente en un espacio costero al aire libre" 
+                 class="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-700">
+            <div class="absolute bottom-6 left-6 z-20">
+              <span class="text-[9px] font-bold bg-emerald-700 text-white px-3 py-1 rounded-full uppercase tracking-wider">Esperanza</span>
+              <h4 class="font-serif text-base font-bold text-white mt-2">Naturaleza viva</h4>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Foto 4 (Ancha, panorámica inferior para romper la simetría) -->
+        <div class="md:col-span-12 relative group overflow-hidden rounded-2xl shadow-sm bg-white cursor-pointer mediterranean-tint border border-sand-200/40 h-72">
+          <div class="absolute inset-0 bg-gradient-to-t from-marine-950/80 via-transparent to-transparent opacity-50 group-hover:opacity-75 transition-opacity z-10"></div>
+          <img data-img="GALERIA_PANORAMICA_ENTORNO" src="" 
+               alt="Orilla del Mar Menor en Murcia, España con el agua en calma reflejando la luz del atardecer" 
+               class="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-700">
+          <div class="absolute bottom-8 left-8 z-20">
+            <span class="text-[9px] font-bold bg-sand-200 text-marine-950 px-3 py-1 rounded-full uppercase tracking-wider">El entorno costero real</span>
+            <h4 class="font-serif text-lg sm:text-xl font-bold text-white mt-2">La luz dorada reflejada en nuestra laguna</h4>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 6. CAMINO PEDAGÓGICO / ITINERARIO (Riqueza visual, detalles finos y elegante) -->
+  <section id="itinerario" class="py-28 bg-white relative fade-in-section">
+    <div class="max-w-7xl mx-auto px-6">
+      
+      <!-- Cabecera de Sección -->
+      <div class="text-center max-w-3xl mx-auto mb-20">
+        <span class="text-xs uppercase tracking-[0.25em] text-terracotta-600 font-bold block mb-3">
+          El Proceso de Aprendizaje Servicio
+        </span>
+        <h2 class="font-serif font-bold text-3xl sm:text-4xl md:text-5xl text-marine-950 tracking-tight">
+          Nuestra Travesía Pedagógica
+        </h2>
+        <p class="text-slate-700 text-base sm:text-lg mt-4 font-normal">
+          Un trayecto vivo donde cada hito curricular se convierte en una vivencia de ayuda real a la comunidad.
+        </p>
+      </div>
+
+      <!-- Timeline Enriquecida, Detallada y Elegante -->
+      <div class="max-w-5xl mx-auto relative pl-8 sm:pl-0">
+        <!-- Línea central decorativa con degradado suave -->
+        <div class="absolute left-4 sm:left-1/2 top-4 bottom-4 w-0.5 bg-gradient-to-b from-marine-600 via-terracotta-400 to-emerald-600 -translate-x-1/2 hidden sm:block"></div>
+        <div class="absolute left-4 top-4 bottom-4 w-0.5 bg-gradient-to-b from-marine-600 via-terracotta-400 to-emerald-600 sm:hidden"></div>
+
+        <div class="space-y-16">
+          
+          <!-- Hito 1 -->
+          <div class="relative flex flex-col sm:flex-row items-center gap-6 sm:gap-12">
+            <!-- Texto izquierda (Visible en pantallas grandes) -->
+            <div class="sm:w-1/2 text-left sm:text-right sm:pr-12">
+              <span class="text-xs text-marine-600 font-bold uppercase tracking-wider block mb-1">Paso 1 · El Despertar</span>
+              <h4 class="font-serif text-xl font-bold text-marine-950 mb-3">Investigación en el Aula</h4>
+              <p class="text-slate-700 text-sm leading-relaxed">
+                El alumnado comienza haciéndose preguntas sobre su propio mar. Analizan literatura sobre biodiversidad, recogen datos de campo y se reúnen con ecologistas de la <span class="text-marine-600 font-semibold">Asociación Hipocampus</span>.
+              </p>
+            </div>
+            
+            <!-- Icono/Punto Central -->
+            <div class="absolute left-[-24px] sm:left-1/2 w-8 h-8 rounded-full bg-marine-50 border-2 border-marine-600 flex items-center justify-center shadow-sm -translate-x-1/2 z-10 transition-transform duration-300 hover:scale-110">
+              <i data-lucide="microscope" class="w-4 h-4 text-marine-600"></i>
+            </div>
+            
+            <div class="sm:w-1/2 hidden sm:block"></div>
+          </div>
+
+          <!-- Hito 2 -->
+          <div class="relative flex flex-col sm:flex-row items-center gap-6 sm:gap-12">
+            <div class="sm:w-1/2 hidden sm:block"></div>
+            
+            <!-- Icono/Punto Central -->
+            <div class="absolute left-[-24px] sm:left-1/2 w-8 h-8 rounded-full bg-terracotta-50 border-2 border-terracotta-500 flex items-center justify-center shadow-sm -translate-x-1/2 z-10 transition-transform duration-300 hover:scale-110">
+              <i data-lucide="scissors" class="w-4 h-4 text-terracotta-500"></i>
+            </div>
+
+            <!-- Texto derecha -->
+            <div class="sm:w-1/2 text-left sm:pl-12">
+              <span class="text-xs text-terracotta-500 font-bold uppercase tracking-wider block mb-1">Paso 2 · Co-creación</span>
+              <h4 class="font-serif text-xl font-bold text-marine-950 mb-3">Taller de peluches de AFESMO</h4>
+              <p class="text-slate-700 text-sm leading-relaxed">
+                El trabajo se une con el taller artesanal. Alumnos y personas del centro de salud mental cooperan codo con codo en el diseño y costura de caballitos de felpa con telas rescatadas, aunando inclusión social y ecología.
+              </p>
+            </div>
+          </div>
+
+          <!-- Hito 3 -->
+          <div class="relative flex flex-col sm:flex-row items-center gap-6 sm:gap-12">
+            <!-- Texto izquierda -->
+            <div class="sm:w-1/2 text-left sm:text-right sm:pr-12">
+              <span class="text-xs text-emerald-600 font-bold uppercase tracking-wider block mb-1">Paso 3 · Compartir</span>
+              <h4 class="font-serif text-xl font-bold text-marine-950 mb-3">Eco-concienciación Ciudadana</h4>
+              <p class="text-slate-700 text-sm leading-relaxed">
+                El proyecto sale a las plazas y mercados de Murcia. El alumnado asume el rol de educadores, explicando a vecinos y visitantes la importancia cívica de cuidar el Mar Menor.
+              </p>
+            </div>
+            
+            <!-- Icono/Punto Central -->
+            <div class="absolute left-[-24px] sm:left-1/2 w-8 h-8 rounded-full bg-emerald-50 border-2 border-emerald-600 flex items-center justify-center shadow-sm -translate-x-1/2 z-10 transition-transform duration-300 hover:scale-110">
+              <i data-lucide="megaphone" class="w-4 h-4 text-emerald-700"></i>
+            </div>
+            
+            <div class="sm:w-1/2 hidden sm:block"></div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       NUEVA SECCIÓN DE GALERÍA AMPLIADA (Slider Fotorreportaje Cinematográfico)
+       ========================================================================= -->
+  <section id="galeria-proyecto" class="py-28 bg-sand-100/40 relative overflow-hidden fade-in-section border-t border-sand-200/30">
+    <div class="max-w-7xl mx-auto px-6">
+      
+      <!-- Cabecera de Sección -->
+      <div class="max-w-3xl mb-16">
+        <span class="text-xs uppercase tracking-[0.25em] text-terracotta-600 font-bold block mb-3">
+          Nuestra Huella de Aprendizaje
+        </span>
+        <h2 class="font-serif font-bold text-3xl sm:text-4xl md:text-5xl text-marine-950 tracking-tight leading-tight">
+          La mirada de la infancia: acción, talleres y comunidad.
+        </h2>
+        <p class="text-slate-700 text-sm sm:text-base mt-4 font-normal">
+          Un registro fotográfico dinámico y emotivo que plasma la humanidad y el esfuerzo compartido de nuestro alumnado en cada taller ecológico e iniciativa de ayuda social.
+        </p>
+      </div>
+
+      <!-- Carrusel Fotográfico Editorial Elegante -->
+      <div id="galeria-proyecto-slider" class="relative max-w-5xl mx-auto overflow-hidden rounded-2xl bg-white border border-sand-200/40 shadow-sm group/slider">
+        <!-- Slides wrapper (Relación de aspecto optimizada para fotorreportajes) -->
+        <div id="slider-track" class="relative h-[320px] sm:h-[480px] md:h-[580px] w-full">
+          <!-- Las diapositivas se inyectarán dinámicamente mediante JS -->
+        </div>
+        
+        <!-- Botones de Navegación Discretos (Aparecen sobre el hover en pantallas grandes) -->
+        <button id="slider-btn-prev" class="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-white/80 hover:bg-white text-marine-900 flex items-center justify-center shadow-sm opacity-100 md:opacity-0 group-hover/slider:opacity-100 transition-all duration-300 focus:outline-none" aria-label="Foto anterior">
+          <i data-lucide="chevron-left" class="w-5 h-5"></i>
+        </button>
+        <button id="slider-btn-next" class="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-white/80 hover:bg-white text-marine-900 flex items-center justify-center shadow-sm opacity-100 md:opacity-0 group-hover/slider:opacity-100 transition-all duration-300 focus:outline-none" aria-label="Siguiente foto">
+          <i data-lucide="chevron-right" class="w-5 h-5"></i>
+        </button>
+        
+        <!-- Puntos Indicadores Elegantes -->
+        <div id="slider-dots" class="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex gap-2">
+          <!-- Los indicadores se inyectarán mediante JS -->
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+<!-- ==========================================
+     NUEVA SECCIÓN: BANCO DE RECURSOS EDUCATIVOS
+     ========================================== -->
+<section id="recursos-didacticos" class="py-28 bg-white relative fade-in-section border-t border-sand-200/30">
+  <div class="max-w-7xl mx-auto px-6">
+    
+    <!-- Cabecera de Sección Editorial -->
+    <div class="max-w-3xl mb-16">
+      <span class="text-xs uppercase tracking-[0.25em] text-terracotta-600 font-bold block mb-3">
+        Espacio Compartido de Aprendizaje
+      </span>
+      <h2 class="font-serif font-bold text-3xl sm:text-4xl md:text-5xl text-marine-950 tracking-tight leading-tight">
+        Banco de recursos didácticos
+      </h2>
+      <p class="text-slate-700 text-sm sm:text-base mt-4 font-normal leading-relaxed">
+        Ponemos a disposición de la comunidad educativa, familias y centros escolares nuestros materiales pedagógicos para expandir la conciencia ambiental y facilitar el trabajo cooperativo en las aulas.
+      </p>
+    </div>
+
+    <!-- Filtros de Categorías en Tonos Arena y Tierra -->
+    <div class="flex flex-wrap gap-3 mb-12">
+      <button onclick="filtrarRecursos('todos')" id="filter-btn-todos" class="px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-300 bg-marine-800 text-white shadow-sm">
+        Todos los recursos
+      </button>
+      <button onclick="filtrarRecursos('Cuentos y lecturas')" id="filter-btn-cuentos" class="px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-300 bg-sand-100 text-slate-700 hover:bg-sand-200">
+        Cuentos y lecturas
+      </button>
+      <button onclick="filtrarRecursos('Vídeos y sensibilización')" id="filter-btn-videos" class="px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-300 bg-sand-100 text-slate-700 hover:bg-sand-200">
+        Vídeos y sensibilización
+      </button>
+      <button onclick="filtrarRecursos('Actividades creativas')" id="filter-btn-actividades" class="px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-300 bg-sand-100 text-slate-700 hover:bg-sand-200">
+        Actividades creativas
+      </button>
+      <button onclick="filtrarRecursos('Conocer el Mar Menor')" id="filter-btn-marmenor" class="px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-300 bg-sand-100 text-slate-700 hover:bg-sand-200">
+        Conocer el Mar Menor
+      </button>
+    </div>
+
+    <!-- Contenedor de Tarjetas de Recursos -->
+    <div id="recursos-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
+      <!-- Las tarjetas se inyectarán de forma dinámica mediante JavaScript -->
+    </div>
+
+  </div>
+</section>
+
+
+
+  <!-- 7. SECCIÓN FINAL: CIERRE DE PROFUNDA EMOCIÓN Y ACCIÓN COLECTIVA -->
+  <section id="cierre" class="relative py-32 bg-sand-100 overflow-hidden fade-in-section border-t border-sand-200/30">
+    <!-- Luz y calidez mediterránea de fondo para transmitir esperanza auténtica -->
+    <div class="absolute inset-0 z-0">
+      <div class="absolute inset-0 bg-gradient-to-t from-sand-100 via-sand-100/90 to-transparent z-10"></div>
+      <img data-img="CIERRE_FONDO" data-fallback="CIERRE_FONDO_FALLBACK" src="" 
+           alt="Un atardecer con luz mediterránea cálida sobre la orilla serena" 
+           class="w-full h-full object-cover filter saturate-75 opacity-40">
+    </div>
+
+    <div class="max-w-4xl mx-auto px-6 relative z-20 text-center flex flex-col items-center">
+      
+      <!-- Detalle emotivo de un caballito artesanal estilizado -->
+      <div class="p-3 bg-white rounded-full border border-sand-200/50 shadow-sm mb-6">
+        <svg class="w-6 h-6 text-terracotta-500 animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+        </svg>
+      </div>
+
+      <span class="text-xs uppercase tracking-[0.25em] text-terracotta-600 font-bold block mb-4">
+        La Transformación Nace en las Aulas
+      </span>
+
+      <!-- Cierre Emocional y de Comunidad -->
+      <h2 class="font-serif font-bold text-3xl sm:text-4xl md:text-5xl text-marine-950 tracking-tight leading-tight mb-8 max-w-3xl">
+        “La educación transforma el entorno cuando nace del compromiso sincero y la acción compartida.”
+      </h2>
+
+      <p class="text-slate-700 text-base sm:text-lg leading-relaxed max-w-2xl mb-12 font-medium">
+        Te invitamos a sumarte a este latido comunitario. Puedes visitar nuestra exposición en el colegio, apoyar los talleres solidarios de AFESMO u orientar tus acciones cotidianas hacia el respeto de nuestra laguna costera.
+      </p>
+
+      <!-- Alternativas de Participación Humana e Integradora -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 w-full max-w-3xl text-left">
+        
+        <div class="p-6 rounded-xl bg-white border border-sand-200 shadow-sm hover:border-marine-600/30 transition-all flex flex-col justify-between">
+          <div>
+            <div class="w-8 h-8 rounded-lg bg-marine-50 text-marine-600 flex items-center justify-center mb-4">
+              <i data-lucide="map-pin" class="w-4 h-4"></i>
+            </div>
+            <h4 class="font-serif font-bold text-marine-950 text-base mb-1">Exposición didáctica</h4>
+            <p class="text-xs text-slate-650 leading-relaxed">Ven a conocer los cuadernos de campo y los materiales que nuestro alumnado ha diseñado con rigor y cariño.</p>
+          </div>
+          <a href="mailto:colegio@example.com" class="text-xs font-bold text-marine-600 hover:text-marine-800 transition-colors mt-4 inline-flex items-center gap-1.5">
+            Escribir al Colegio <i data-lucide="arrow-right" class="w-3 h-3"></i>
+          </a>
+        </div>
+
+        <div class="p-6 rounded-xl bg-white border border-sand-200 shadow-sm hover:border-terracotta-500/30 transition-all flex flex-col justify-between">
+          <div>
+            <div class="w-8 h-8 rounded-lg bg-terracotta-50 text-terracotta-600 flex items-center justify-center mb-4">
+              <i data-lucide="gift" class="w-4 h-4"></i>
+            </div>
+            <h4 class="font-serif font-bold text-marine-950 text-base mb-1">Adoptar un Peluche</h4>
+            <p class="text-xs text-slate-650 leading-relaxed">Colabora con los programas de inclusión social adquiriendo un caballito artesanal cosido por AFESMO.</p>
+          </div>
+          <a href="https://saludmentalmolina.es/" target="_blank" class="text-xs font-bold text-terracotta-600 hover:text-terracotta-500 transition-colors mt-4 inline-flex items-center gap-1.5">
+            Contacto AFESMO <i data-lucide="arrow-right" class="w-3 h-3"></i>
+          </a>
+        </div>
+
+        <div class="p-6 rounded-xl bg-white border border-sand-200 shadow-sm hover:border-emerald-600/30 transition-all flex flex-col justify-between">
+          <div>
+            <div class="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-700 flex items-center justify-center mb-4">
+              <i data-lucide="anchor" class="w-4 h-4"></i>
+            </div>
+            <h4 class="font-serif font-bold text-marine-950 text-base mb-1">Sumar Voluntad</h4>
+            <p class="text-xs text-slate-650 leading-relaxed">Conoce de cerca las labores de la Asociación Hipocampus y aprende cómo proteger de forma activa las playas.</p>
+          </div>
+          <a href="https://asociacionhippocampus.com/" target="_blank" class="text-xs font-bold text-emerald-700 hover:text-emerald-600 transition-colors mt-4 inline-flex items-center gap-1.5">
+            Saber de Hipocampus <i data-lucide="arrow-right" class="w-3 h-3"></i>
+          </a>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PIE DE PÁGINA EDITORIAL -->
+  <footer class="bg-marine-950 text-sand-100/60 py-16 border-t border-marine-900 text-sm">
+    <div class="max-w-7xl mx-auto px-6">
+      
+      <div class="flex flex-col md:flex-row items-center justify-between gap-8 pb-12 border-b border-marine-900">
+        <div class="flex items-center gap-3">
+  <div class="w-[170px] h-[170px] rounded-xl overflow-hidden shadow-md">
+  <img 
+    class="logoCaballito w-full h-full object-cover drop-shadow-lg"
+    src=""
+    alt="Logo Guardianes del Caballito de Mar"
+  >
+</div>
+            <span class="font-serif font-bold text-white tracking-wider block">Guardianes del Caballito de Mar</span>
+            <span class="text-[9px] text-slate-400 block tracking-widest uppercase mt-0.5">Uniendo Aprendizaje, Ciencia y Compromiso Social</span>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap justify-center gap-8 text-xs font-bold uppercase tracking-wider text-slate-300">
+          <a href="#el-mar-menor" class="hover:text-white transition-colors">Entorno</a>
+          <a href="#los-alumnos" class="hover:text-white transition-colors">Alumnado</a>
+          <a href="#comunidad" class="hover:text-white transition-colors">Comunidad</a>
+          <a href="#itinerario" class="hover:text-white transition-colors">Itinerario</a>
+        </div>
+      </div>
+
+      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+        <p>
+          Proyecto de Aprendizaje Servicio (ApS) en Educación Primaria. Región de Murcia, España.
+        </p>
+        <p class="text-slate-600">
+          &copy; 2026 Guardianes del Caballito de Mar. Creando conciencia activa.
+        </p>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- SCRIPTS Y ACTIVADORES DE ANIMACIONES -->
+  <script>
+    // Inicializar iconos de Lucide
+    lucide.createIcons();
+
+    // Aplicar imágenes, fotorreportajes y fallbacks una vez que el DOM esté listo
+    document.addEventListener("DOMContentLoaded", () => {
+      aplicarImagenes();
+      iniciarHeroRotativo();
+      renderVideoPrincipal();
+      renderGaleriaProyecto();
+      // Agrega esto dentro del document.addEventListener("DOMContentLoaded", () => { ... })
+       renderRecursosEducativos();
+
+      // Animación de entrada fluida basada en scroll
+      const observerOptions = {
+        root: null,
+        rootMargin: "0px",
+        threshold: 0.1
+      };
+
+      const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      }, observerOptions);
+
+      const sections = document.querySelectorAll(".fade-in-section");
+      sections.forEach(section => {
+        observer.observe(section);
+      });
+    });
+
+    // Menú móvil interactivo
+    function toggleMenu() {
+      const menu = document.getElementById("mobile-menu");
+      const icon = document.getElementById("menu-icon");
+      if (menu.classList.contains("hidden")) {
+        menu.classList.remove("hidden");
+        icon.setAttribute("data-lucide", "x");
+      } else {
+        menu.classList.add("hidden");
+        icon.setAttribute("data-lucide", "menu");
+      }
+      lucide.createIcons();
+    }
+
+    // Efecto de sombra e iluminación del navbar al hacer scroll
+    window.addEventListener("scroll", () => {
+      const nav = document.querySelector("nav");
+      if (window.scrollY > 40) {
+        nav.classList.add("shadow-md", "bg-sand-50/95");
+      } else {
+        nav.classList.remove("shadow-md", "bg-sand-50/95");
+      }
+    });
+  </script>
+
+<!-- MODAL PREMIUM PARA VÍDEOS -->
+<div id="video-modal"
+     class="fixed inset-0 z-[100] hidden opacity-0 transition-opacity duration-500 ease-out flex items-center justify-center p-3 sm:p-4 md:p-4 bg-marine-950/80 backdrop-blur-md"
+     role="dialog"
+     aria-modal="true">
+
+  <div id="video-modal-container"
+       class="relative w-full max-w-7xl bg-black rounded-2xl shadow-2xl border border-sand-200/20 transform scale-95 transition-transform duration-500 ease-out overflow-hidden">
+
+    <button type="button"
+            onclick="closeVideoModal()"
+            class="absolute top-4 right-4 z-50 p-2.5 rounded-full bg-sand-50/90 hover:bg-white text-marine-950 transition-all shadow-sm hover:shadow focus:outline-none"
+            aria-label="Cerrar vídeo">
+      <i data-lucide="x" class="w-4 h-4"></i>
+    </button>
+
+    <div class="relative w-full aspect-video bg-black">
+      <iframe id="modal-video-iframe"
+              src=""
+              class="absolute inset-0 w-full h-full border-0"
+              allow="autoplay; fullscreen"
+              allowfullscreen>
+      </iframe>
+    </div>
+
+  </div>
+</div>
+
+<script>
+window.convertirUrlAEmbed = function(url) {
+  url = String(url || "");
+
+  // Google Drive: /view -> /preview
+  const driveMatch = url.match(/drive\.google\.com\/file\/d\/([^/]+)/);
+  if (driveMatch && driveMatch[1]) {
+    return "https://drive.google.com/file/d/" + driveMatch[1] + "/preview";
+  }
+
+  // YouTube formato largo: https://www.youtube.com/watch?v=ID
+  const youtubeWatchMatch = url.match(/[?&]v=([^&]+)/);
+  if (url.includes("youtube.com/watch") && youtubeWatchMatch && youtubeWatchMatch[1]) {
+    return "https://www.youtube.com/embed/" + youtubeWatchMatch[1];
+  }
+
+  // YouTube formato corto: https://youtu.be/ID
+  const youtubeShortMatch = url.match(/youtu\.be\/([^?&]+)/);
+  if (youtubeShortMatch && youtubeShortMatch[1]) {
+    return "https://www.youtube.com/embed/" + youtubeShortMatch[1];
+  }
+
+  // YouTube Shorts: https://www.youtube.com/shorts/ID
+  const youtubeShortsMatch = url.match(/youtube\.com\/shorts\/([^?&]+)/);
+  if (youtubeShortsMatch && youtubeShortsMatch[1]) {
+    return "https://www.youtube.com/embed/" + youtubeShortsMatch[1];
+  }
+
+  // Si ya viene como embed o es otra URL, la dejamos igual
+  return url;
+};
+
+window.openVideoModal = function(url, tipo = "video") {
+  const modal = document.getElementById("video-modal");
+  const iframe = document.getElementById("modal-video-iframe");
+  const container = document.getElementById("video-modal-container");
+
+  if (!modal || !iframe || !container) {
+    console.error("No se encontró el modal de vídeo o alguno de sus elementos internos.");
+    return;
+  }
+container.classList.remove("max-w-4xl", "max-w-5xl", "max-w-6xl", "max-w-7xl");
+container.classList.remove("aspect-video");
+
+const iframeBox = iframe.parentElement;
+
+if (tipo === "interactivo") {
+  container.classList.add("max-w-4xl");
+
+  if (iframeBox) {
+    iframeBox.classList.remove("aspect-video");
+    iframeBox.style.height = "80vh";
+  }
+
+} else {
+  container.classList.add("max-w-7xl");
+
+  if (iframeBox) {
+    iframeBox.classList.add("aspect-video");
+    iframeBox.style.height = "";
+  }
+}
+
+
+  iframe.src = window.convertirUrlAEmbed(url);
+
+  modal.classList.remove("hidden");
+
+  requestAnimationFrame(function() {
+    modal.classList.remove("opacity-0");
+    modal.classList.add("opacity-100");
+    container.classList.remove("scale-95");
+    container.classList.add("scale-100");
+  });
+
+  document.body.classList.add("modal-video-active");
+};
+
+window.closeVideoModal = function() {
+  const modal = document.getElementById("video-modal");
+  const iframe = document.getElementById("modal-video-iframe");
+  const container = document.getElementById("video-modal-container");
+
+  if (!modal || !iframe || !container) return;
+
+  modal.classList.remove("opacity-100");
+  modal.classList.add("opacity-0");
+  container.classList.remove("scale-100");
+  container.classList.add("scale-95");
+
+  setTimeout(function() {
+    iframe.src = "";
+    modal.classList.add("hidden");
+    document.body.classList.remove("modal-video-active");
+  }, 500);
+};
+
+document.addEventListener("keydown", function(e) {
+  if (e.key === "Escape") {
+    window.closeVideoModal();
+  }
+});
+
+document.addEventListener("DOMContentLoaded", function() {
+  const modal = document.getElementById("video-modal");
+
+  if (modal) {
+    modal.addEventListener("click", function(e) {
+      if (e.target === modal) {
+        window.closeVideoModal();
+      }
+    });
+  }
+
+  if (typeof lucide !== "undefined") {
+    lucide.createIcons();
+  }
+});
+</script>
+
+
+
+
+</body>
+</html>
